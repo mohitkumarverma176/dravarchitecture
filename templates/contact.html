@@ -76,11 +76,11 @@
 			<div class="row mb-5 justify-content-center text-center">
 				<div class="col-lg-5">
 					<h2 class="heading">Get in touch</h2>
-					<p class="text-black-50">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+					<p class="text-black-50">We’d love to hear from you! Whether you have a question, feedback, or a project in mind, feel free to reach out. Fill out the form below or drop us an email—we’ll get back to you as soon as possible.</p>
 				</div>
 			</div>
 			<form class="row" method="POST" action="{{ url_for('contact') }}">
-				{{ csrf_token() }}
+<!--				{{ csrf_token() }}-->
 
 				<!-- Flash messages -->
 				{% with messages = get_flashed_messages(with_categories=true) %}
