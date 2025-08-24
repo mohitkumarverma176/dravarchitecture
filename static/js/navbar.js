@@ -6,6 +6,12 @@
 	var siteMenuClone = function() {
 		var jsCloneNavs = document.querySelectorAll('.js-clone-nav');
 		var siteMobileMenuBody = document.querySelector('.site-mobile-menu-body');
+		var siteMobileMenu = document.querySelector('.site-mobile-menu');
+
+		// Defensive checks: if required elements don't exist on the page, bail out
+		if (!siteMobileMenu || !siteMobileMenuBody || !jsCloneNavs || jsCloneNavs.length === 0) {
+			return;
+		}
 		
 
 
@@ -17,7 +23,7 @@
 
 		setTimeout(function(){
 
-			var hasChildrens = document.querySelector('.site-mobile-menu').querySelectorAll(' .has-children');
+			var hasChildrens = siteMobileMenu.querySelectorAll('.has-children');
 
 			var counter = 0;
 			hasChildrens.forEach( hasChild => {
@@ -65,7 +71,7 @@
 
 
 
-		var specifiedElement = document.querySelector(".site-mobile-menu");
+		var specifiedElement = siteMobileMenu;
 		var mt, mtoggleTemp;
 		document.addEventListener('click', function(event) {
 			var isClickInside = specifiedElement.contains(event.target);
@@ -83,8 +89,13 @@
 
 		});
 
-	}; 
-	siteMenuClone();
+	};
+	// Run after DOM is ready to ensure elements like .site-mobile-menu exist
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', siteMenuClone);
+	} else {
+		siteMenuClone();
+	}
 
 
 })()

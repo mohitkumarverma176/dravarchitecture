@@ -1,39 +1,46 @@
-
 import os, smtplib, ssl
 from email.message import EmailMessage
 from flask import Flask, render_template, request, redirect, url_for, flash
+from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "change-this-secret")
+csrf = CSRFProtect(app)
 
-@app.get("/")
+
+@app.route('/')
 def home():
-    return render_template("index.html")
+    return render_template('index.html')
 
-@app.get("/projects")
+
+@app.route('/projects')
 def projects():
-    return render_template("projects.html")
+    return render_template('projects.html')
 
-@app.get("/project-single")
+
+@app.route('/project-single')
 def project_single():
-    return render_template("project-single.html")
+    return render_template('project-single.html')
 
-@app.get("/services")
+
+@app.route('/services')
 def services():
-    return render_template("services.html")
+    return render_template('services.html')
 
-@app.get("/about")
+
+@app.route('/about')
 def about():
-    return render_template("about.html")
+    return render_template('about.html')
 
-@app.route("/contact", methods=["GET", "POST"])
+
+@app.route('/contact', methods=["GET", "POST"])
 def contact():
     if request.method == "POST":
-        name = request.form.get("name","").strip()
-        email = request.form.get("email","").strip()
-        phone = request.form.get("phone","").strip()
-        subject = request.form.get("subject","").strip() or "New Contact Form Message"
-        message = request.form.get("message","").strip()
+        name = request.form.get("name", "").strip()
+        email = request.form.get("email", "").strip()
+        phone = request.form.get("phone", "").strip()
+        subject = request.form.get("subject", "").strip() or "New Contact Form Message"
+        message = request.form.get("message", "").strip()
 
         if not name or not email or not message:
             flash("Please fill in Name, Email, and Message.", "error")
@@ -63,6 +70,7 @@ Message:
         return redirect(url_for("contact"))
     return render_template("contact.html")
 
+
 def send_email(recipient: str, subject: str, body: str):
     smtp_host = os.environ.get("SMTP_HOST", "smtp.gmail.com")
     smtp_port = int(os.environ.get("SMTP_PORT", "587"))
@@ -85,9 +93,11 @@ def send_email(recipient: str, subject: str, body: str):
         server.login(smtp_user, smtp_pass)
         server.send_message(msg)
 
+
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")), debug=True)

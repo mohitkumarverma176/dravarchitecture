@@ -16,20 +16,33 @@
 		var overlay = document.getElementById('overlayer');
 
 		function fadeOut(el) {
-			el.style.opacity = 1;
-			(function fade() {
-				if ((el.style.opacity -= .1) < 0) {
-					el.style.display = "none";
-				} else {
-					requestAnimationFrame(fade);
-				}
-			})();
+			if (el) {
+				el.style.opacity = 1;
+				(function fade() {
+					if ((el.style.opacity -= .1) < 0) {
+						el.style.display = "none";
+					} else {
+						requestAnimationFrame(fade);
+					}
+				})();
+			}
 		};
 
-		setTimeout(function() {
-			fadeOut(loader);
-			fadeOut(overlay);
-		}, 200);
+		// Wait for the DOM to be fully loaded before trying to hide preloader
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', function() {
+				setTimeout(function() {
+					fadeOut(loader);
+					fadeOut(overlay);
+				}, 500);
+			});
+		} else {
+			// DOM is already loaded
+			setTimeout(function() {
+				fadeOut(loader);
+				fadeOut(overlay);
+			}, 500);
+		}
 	};
 	preloader();
 
