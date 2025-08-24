@@ -23,6 +23,11 @@ def project_single():
     return render_template('project-single.html')
 
 
+@app.route('/single')
+def single():
+    return render_template('single.html')
+
+
 @app.route('/services')
 def services():
     return render_template('services.html')
