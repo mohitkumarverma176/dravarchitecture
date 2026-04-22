@@ -1,80 +1,81 @@
-<div class="site-footer bg-light">
+<div class="site-footer">
     <div class="container">
+        <div class="row justify-content-between pt-5 pb-4">
 
-        <div class="row justify-content-between">
-            <div class="col-lg-4">
-                <div class="widget">
-                    <h3 class="line-top">About</h3>
-                    <p class="mb-5">Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque. Veniam quidem debitis odio amet voluptas distinctio dicta placeat! Et pariatur doloremque ea veniam. Separated they live.</p>
-
+            <!-- Brand column -->
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <div class="widget mb-4">
+                    <a href="/" style="font-family:'Inter',sans-serif; font-weight:700; font-size:1.05rem; letter-spacing:0.1em; text-transform:uppercase; color:#fff; text-decoration:none;">
+                        Drav Architecture<span style="color:#fc5404;">.</span>
+                    </a>
+                    <p class="mt-4 mb-3">A multidisciplinary design studio specialising in Architecture, Landscape Design, and Interior Planning. Creating spaces that endure — across India.</p>
+                    <p class="mb-1">
+                        <a href="tel:+918878860664" style="font-size:0.95rem; font-weight:500; color:rgba(255,255,255,0.75) !important;">+91 88788 60664</a>
+                    </p>
+                    <p class="mb-0">
+                        <a href="mailto:info@dravarchitecture.com" style="font-size:0.88rem; color:rgba(255,255,255,0.4) !important;">info@dravarchitecture.com</a>
+                    </p>
                 </div>
                 <div class="widget">
-                    <h3 class="line-top">Connect with us</h3>
-                    <ul class="social list-unstyled mb-5">
-                        <li><a href="#"><span class="icon-facebook"></span></a></li>
-                        <li><a href="#"><span class="icon-twitter"></span></a></li>
-                        <li><a href="#"><span class="icon-instagram"></span></a></li>
-                        <li><a href="#"><span class="icon-dribbble"></span></a></li>
-                        <li><a href="#"><span class="icon-linkedin"></span></a></li>
+                    <ul class="social list-unstyled d-flex gap-3 mb-0">
+                        <li><a href="#" aria-label="Facebook"><span class="icon-facebook"></span></a></li>
+                        <li><a href="#" aria-label="Instagram"><span class="icon-instagram"></span></a></li>
+                        <li><a href="#" aria-label="LinkedIn"><span class="icon-linkedin"></span></a></li>
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-6">
+
+            <!-- Navigation columns -->
+            <div class="col-lg-7">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-6 col-sm-6 col-md-4 mb-4">
                         <div class="widget">
-                            <h3 class="line-top">Navigations</h3>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-6 col-md-4">
-                        <div class="widget">
+                            <h3 class="line-top">Navigate</h3>
                             <ul class="links list-unstyled">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Services</a></li>
-                                <li><a href="#">Work</a></li>
-                                <li><a href="#">Process</a></li>
-                                <li><a href="#">About Us</a></li>
+                                <li><a href="{{ url_for('home') }}">Home</a></li>
+                                <li><a href="{{ url_for('about') }}">About Us</a></li>
+                                <li><a href="{{ url_for('services') }}">Services</a></li>
+                                <li><a href="{{ url_for('projects') }}">Projects</a></li>
+                                <li><a href="{{ url_for('contact') }}">Contact</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-6 col-sm-6 col-md-4">
+                    <div class="col-6 col-sm-6 col-md-4 mb-4">
                         <div class="widget">
+                            <h3 class="line-top">Services</h3>
                             <ul class="links list-unstyled">
-                                <li><a href="#">Press</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Contact</a></li>
-                                <li><a href="#">Support</a></li>
-                                <li><a href="#">Privacy</a></li>
+                                <li><a href="{{ url_for('services') }}">Architecture</a></li>
+                                <li><a href="{{ url_for('services') }}">Landscape Design</a></li>
+                                <li><a href="{{ url_for('services') }}">Interior Design</a></li>
+                                <li><a href="{{ url_for('services') }}">Engineering Plans</a></li>
+                                <li><a href="{{ url_for('services') }}">3D Visualisation</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-6 col-sm-6 col-md-4">
+                    <div class="col-6 col-sm-6 col-md-4 mb-4">
                         <div class="widget">
+                            <h3 class="line-top">Locations</h3>
                             <ul class="links list-unstyled">
-                                <li><a href="#">Privacy</a></li>
-                                <li><a href="#">FAQ</a></li>
-                                <li><a href="#">Careers</a></li>
-                                <li><a href="#">Process</a></li>
-                                <li><a href="#">About Us</a></li>
+                                <li><span>Lucknow, UP</span></li>
+                                <li><span>Greater Noida, UP</span></li>
+                                <li><span>Dehradun, Uttarakhand</span></li>
+                                <li><span>Darbhanga, Bihar</span></li>
+                                <li><span>New Delhi</span></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
-        <div class="row justify-content-center text-center copyright">
-            <div class="col-md-8">
-                <p class="small text-black-50">Copyright &copy;2025. All Rights Reserved. &mdash; Designed with Mohit Kumar Verma</p>
+        <div class="row copyright">
+            <div class="col-md-12">
+                <p class="mb-0">
+                    &copy; <script>document.write(new Date().getFullYear());</script> Drav Architecture. All Rights Reserved.
+                    &mdash; Designed &amp; Developed by <strong>Mohit Kumar Verma</strong>
+                </p>
             </div>
         </div>
-    </div>
-</div>
-
-<!-- Preloader -->
-<div id="overlayer"></div>
-<div class="loader">
-    <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
     </div>
 </div>

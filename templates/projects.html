@@ -1,477 +1,240 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<meta name="author" content="Untree.co">
-	<link rel="shortcut icon" href="/static/images/favicon.png">
+{% extends 'base.html' %}
 
-	<meta name="description" content="" />
-	<meta name="keywords" content="bootstrap, bootstrap5" />
-	
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
+{% block title %}Projects{% endblock %}
+{% block meta_description %}Explore Drav Architecture's project portfolio — landscape design, architecture, and urban planning across Lucknow, Greater Noida, Dehradun, and Bihar.{% endblock %}
+{% block nav_projects %}active{% endblock %}
 
-	<link rel="stylesheet" href="/static/fonts/icomoon/style.css">
-	<link rel="stylesheet" href="/static/fonts/flaticon/font/flaticon.css">
-	<link rel="stylesheet" href="/static/css/tiny-slider.css">
-	<link rel="stylesheet" href="/static/css/aos.css">
-	<link rel="stylesheet" href="/static/css/glightbox.min.css">
-	<link rel="stylesheet" href="/static/css/style.css">
+{% block content %}
 
-	<title>Drav Architecture &mdash; </title>
-</head>
-<body>
+<!-- ══ HERO ══ -->
+<div class="hero-2 hero-inner overlay" style="background-image: url('{{ url_for('static', filename='images/img_3.jpg') }}');">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <span class="eyebrow light" data-aos="fade-up">Our Work</span>
+                <h1 class="display-heading" data-aos="fade-up" data-aos-delay="80">
+                    <span>Selected</span>
+                    <span class="accent-line">Projects.</span>
+                </h1>
+                <hr class="hero-rule" data-aos="fade-up" data-aos-delay="160">
+                <p class="text-white mb-0" style="font-size:1rem; opacity:.7; max-width:520px; line-height:1.85;" data-aos="fade-up" data-aos-delay="200">
+                    Architecture and landscape design projects delivered across India — each shaped by site, purpose, and the people they serve.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 
-	<div class="site-mobile-menu site-navbar-target">
-		<div class="site-mobile-menu-header">
-			<div class="site-mobile-menu-close">
-				<span class="icofont-close js-menu-toggle"></span>
-			</div>
-		</div>
-		<div class="site-mobile-menu-body"></div>
-	</div>
+<!-- ══ PROJECTS GRID ══ -->
+<div class="section">
+    <div class="container">
+        <div class="row mb-4 align-items-end">
+            <div class="col-lg-5" data-aos="fade-right">
+                <span class="eyebrow">Portfolio</span>
+                <h2 class="section-heading">All Projects.</h2>
+            </div>
+            <div class="col-lg-5 ms-auto" data-aos="fade-left">
+                <p style="font-size:0.92rem; color:#888; line-height:1.8;">From intimate private residences to large-scale urban landscapes — diverse typologies, scales, and geographies across India.</p>
+            </div>
+        </div>
 
-	<nav class="site-nav">
-		<div class="container">
-			<div class="site-navigation">
-				<a href="/" class="logo m-0 float-start">Drav Architecture<span class="text-primary">.</span> </a>
+        <!-- Filter Buttons -->
+        <div class="project-filters" data-aos="fade-up">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="landscape">Landscape Design</button>
+            <button class="filter-btn" data-filter="architecture">Architecture</button>
+            <button class="filter-btn" data-filter="institutional">Institutional</button>
+        </div>
 
-				<ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-start">
-					<li><a href="/">Home</a></li>
-					<li class="has-children active">
-						<a href="/projects">Projects</a>
-						<ul class="dropdown">
-							<li><a href="#">Commercial Building</a></li>
-							<li><a href="#">Cultural Lifestyle</a></li>
-							<li class="has-children">
-								<a href="#">Dropdown</a>
-								<ul class="dropdown">
-									<li><a href="#">Sub Menu One</a></li>
-									<li><a href="#">Sub Menu Two</a></li>
-									<li><a href="#">Sub Menu Three</a></li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-					<li><a href="/services">Services</a></li>
-					<li><a href="/about">About</a></li>
-					<li><a href="/contact">Contact Us</a></li>
-				</ul>
+        <div class="row g-1" id="projects-grid">
+            <div class="col-sm-6 col-lg-4" data-category="landscape" data-aos="fade-up" data-aos-delay="0">
+                <div class="single-portfolio">
+                    <a href="{{ url_for('project_single') }}">
+                        <img src="{{ url_for('static', filename='images/img_8.jpg') }}" alt="Urban Woods Lucknow">
+                        <div class="contents">
+                            <div class="cat">Landscape Design</div>
+                            <h3>Urban Woods</h3>
+                            <div class="proj-location">Lucknow, Uttar Pradesh</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4" data-category="landscape" data-aos="fade-up" data-aos-delay="80">
+                <div class="single-portfolio">
+                    <a href="{{ url_for('project_single') }}">
+                        <img src="{{ url_for('static', filename='images/img_2.jpg') }}" alt="Amaravati Midtown Housing">
+                        <div class="contents">
+                            <div class="cat">Landscape Design</div>
+                            <h3>Amaravati Midtown Housing</h3>
+                            <div class="proj-location">Lucknow, Uttar Pradesh</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4" data-category="landscape" data-aos="fade-up" data-aos-delay="160">
+                <div class="single-portfolio">
+                    <a href="{{ url_for('project_single') }}">
+                        <img src="{{ url_for('static', filename='images/img_3.jpg') }}" alt="Amrapali Leisure Park">
+                        <div class="contents">
+                            <div class="cat">Landscape Design</div>
+                            <h3>Amrapali Leisure Park</h3>
+                            <div class="proj-location">Greater Noida, UP</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4" data-category="landscape" data-aos="fade-up" data-aos-delay="0">
+                <div class="single-portfolio">
+                    <a href="{{ url_for('project_single') }}">
+                        <img src="{{ url_for('static', filename='images/img_4.jpg') }}" alt="Amrapali Golf Homes">
+                        <div class="contents">
+                            <div class="cat">Landscape Design</div>
+                            <h3>Amrapali Golf Homes &amp; Kingswood</h3>
+                            <div class="proj-location">Greater Noida, UP</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4" data-category="landscape" data-aos="fade-up" data-aos-delay="80">
+                <div class="single-portfolio">
+                    <a href="{{ url_for('project_single') }}">
+                        <img src="{{ url_for('static', filename='images/img_5.jpg') }}" alt="Amrapali Centurian Park">
+                        <div class="contents">
+                            <div class="cat">Landscape Design</div>
+                            <h3>Amrapali Centurian Park</h3>
+                            <div class="proj-location">Greater Noida, UP</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4" data-category="institutional" data-aos="fade-up" data-aos-delay="160">
+                <div class="single-portfolio">
+                    <a href="{{ url_for('project_single') }}">
+                        <img src="{{ url_for('static', filename='images/img_6.jpg') }}" alt="SDRF Campus Dehradun">
+                        <div class="contents">
+                            <div class="cat">Institutional</div>
+                            <h3>SDRF Campus Landscape</h3>
+                            <div class="proj-location">Jolly Grant, Dehradun</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4" data-category="architecture" data-aos="fade-up" data-aos-delay="0">
+                <div class="single-portfolio">
+                    <a href="{{ url_for('project_single') }}">
+                        <img src="{{ url_for('static', filename='images/img_7.jpg') }}" alt="Munirika Residence Darbhanga">
+                        <div class="contents">
+                            <div class="cat">Residential Architecture</div>
+                            <h3>Munirika Residence</h3>
+                            <div class="proj-location">Darbhanga, Bihar</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4" data-category="architecture" data-aos="fade-up" data-aos-delay="80">
+                <div class="single-portfolio">
+                    <a href="{{ url_for('project_single') }}">
+                        <img src="{{ url_for('static', filename='images/img_8.jpg') }}" alt="Star Flour Mill Pandaul">
+                        <div class="contents">
+                            <div class="cat">Commercial Architecture</div>
+                            <h3>Star Flour Mill</h3>
+                            <div class="proj-location">Pandaul, Bihar</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4" data-category="landscape" data-aos="fade-up" data-aos-delay="160">
+                <div class="single-portfolio">
+                    <a href="{{ url_for('project_single') }}">
+                        <img src="{{ url_for('static', filename='images/img_2.jpg') }}" alt="Farm House Landscape Lucknow">
+                        <div class="contents">
+                            <div class="cat">Landscape Design</div>
+                            <h3>Farm House Landscape</h3>
+                            <div class="proj-location">Lucknow, UP</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-				<a href="#" class="burger ml-auto float-end site-menu-toggle light js-menu-toggle d-inline-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">
-					<span></span>
-				</a>
-				<ul class="site-menu float-end d-none d-md-block">
-					<li><a href="#" class="d-flex align-items-center text-white h2 fw-bold"><span class="icon-phone me-2"></span> <span>+918878860664</span></a></li>
-				</ul>
+<!-- ══ COMMITMENT ══ -->
+<div class="section bg-light">
+    <div class="container">
+        <div class="row justify-content-between align-items-center g-5 pb-5" style="border-bottom: 1px solid var(--da-border, #e2e2e2);">
+            <div class="col-lg-4" data-aos="fade-right">
+                <span class="eyebrow">We Are Committed</span>
+                <h2 class="section-heading mb-4">Always Under Construction.</h2>
+                <p style="font-size:0.92rem; color:#888; line-height:1.8; margin-bottom:28px;">We continuously push the boundaries of architecture and landscape design — learning from every project, growing with every client.</p>
+                <a href="{{ url_for('contact') }}" class="btn btn-primary">Start Your Project</a>
+            </div>
+            <div class="col-lg-7" data-aos="fade-left">
+                <a href="https://www.youtube.com/watch?v=mwtbEGNABWU" class="video-wrap glightbox">
+                    <span class="icon-play"></span>
+                    <img src="{{ url_for('static', filename='images/img_4.jpg') }}" alt="Our commitment" class="img-fluid" style="width:100%;display:block;">
+                </a>
+            </div>
+        </div>
+        <div class="row g-0 mt-5">
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="0">
+                <div class="why-card">
+                    <div class="icon-wrap"><i class="flaticon-compass"></i></div>
+                    <h4>Site-Responsive Design</h4>
+                    <p>Every project begins with thorough site analysis — topography, climate, context, and surroundings. Good design starts with listening to the land.</p>
+                </div>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="80">
+                <div class="why-card">
+                    <div class="icon-wrap"><i class="flaticon-plan"></i></div>
+                    <h4>Community-Centred Spaces</h4>
+                    <p>Our projects prioritise the wellbeing of the people who use them — creating inclusive, activated, and safe environments for everyday life.</p>
+                </div>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="160">
+                <div class="why-card">
+                    <div class="icon-wrap"><i class="flaticon-architect"></i></div>
+                    <h4>Sustainable Practices</h4>
+                    <p>From Miyawaki forests to climate-responsive building envelopes, we integrate sustainable practices as a matter of principle, not afterthought.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-			</div>
-		</div>
-	</nav>
+<!-- ══ CTA ══ -->
+<div class="cta-banner">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7 mb-4 mb-lg-0" data-aos="fade-right">
+                <span class="eyebrow" style="color:rgba(255,255,255,0.3);">Let's Build Together</span>
+                <h2>Have a Project for Us?</h2>
+                <p>We'd love to hear what you're working on. Let's create something remarkable together.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end" data-aos="fade-left">
+                <a href="{{ url_for('contact') }}" class="btn-white">Get in Touch</a>
+            </div>
+        </div>
+    </div>
+</div>
 
-	<div class="hero-2 overlay" style="background-image: url('/static/images/img_3.jpg');">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-5 mx-auto ">
-					<h1 class="mb-5 text-center"><span>Our Projects</span></h1>
+{% endblock %}
 
-
-					<div class="intro-desc text-left">
-						<div class="line"></div>
-						<p>Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<div class="section sec-5">
-		<div class="container">
-			<div class="row mb-5">
-				
-				<div class="col-lg-6 ms-auto">
-					<p>Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque.</p>
-				</div>
-			</div>
-
-			<div class="row g-4">
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-					<div class="single-portfolio">
-						<a href="/project-single">
-							<img src="/static/images/img_8.jpg" alt="Image" class="img-fluid">
-							<div class="contents">
-								<h3>Project One</h3>
-								<div class="cat">Construction</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-					<div class="single-portfolio">
-						<a href="/project-single">
-							<img src="/static/images/img_2.jpg" alt="Image" class="img-fluid">
-							<div class="contents">
-								<h3>Project Two</h3>
-								<div class="cat">Construction</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-					<div class="single-portfolio">
-						<a href="/project-single">
-							<img src="/static/images/img_3.jpg" alt="Image" class="img-fluid">
-							<div class="contents">
-								<h3>Project One</h3>
-								<div class="cat">Construction</div>
-							</div>
-						</a>
-					</div>
-				</div>
-
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-					<div class="single-portfolio">
-						<a href="/project-single">
-							<img src="/static/images/img_4.jpg" alt="Image" class="img-fluid">
-							<div class="contents">
-								<h3>Project One</h3>
-								<div class="cat">Construction</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-					<div class="single-portfolio">
-						<a href="/project-single">
-							<img src="/static/images/img_5.jpg" alt="Image" class="img-fluid">
-							<div class="contents">
-								<h3>Project Two</h3>
-								<div class="cat">Construction</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-					<div class="single-portfolio">
-						<a href="/project-single">
-							<img src="/static/images/img_6.jpg" alt="Image" class="img-fluid">
-							<div class="contents">
-								<h3>Project One</h3>
-								<div class="cat">Construction</div>
-							</div>
-						</a>
-					</div>
-				</div>
-
-				
-			</div>
-		</div>
-	</div>
-
-
-	<div class="sec-4 section bg-light">
-
-		<div class="text-center mb-5">
-			<h2 class="heading mb-5 text-center">Testimonial</h2>
-		</div>
-		<div class="testimonial-slide-center-wrap" data-aos="fade-up" data-aos-delay="100">
-
-			<div id="testimonial-nav">
-				<span class="prev" data-controls="prev"><span class="icon-chevron-left"></span></span>
-
-				<span class="next" data-controls="next"><span class="icon-chevron-right"></span></span>
-			</div>
-			
-			<div class="testimonial-slide-center testimonial-center" id="testimonial-center">
-
-				<div class="item">
-					<div class="testimonial-item">
-						<div  class="testimonial-item-inner">
-							<div class="testimonial-author mb-5">
-								<img src="/static/images/person_2.jpg" alt="Image" class="img-fluid">
-								<strong class="d-block">James Campbell</strong>
-								<span>CEO, Co-Founder</span>
-							</div>
-							<blockquote>
-								Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque. Veniam quidem debitis odio amet voluptas distinctio dicta placeat! Et pariatur doloremque ea veniam.
-							</blockquote>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="item">
-					<div class="testimonial-item">
-						<div  class="testimonial-item-inner">
-							<div class="testimonial-author mb-5">
-								<img src="/static/images/person_1.jpg" alt="Image" class="img-fluid">
-								<strong class="d-block">James Campbell</strong>
-								<span>CEO, Co-Founder</span>
-							</div>
-							<blockquote>
-								Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque. Veniam quidem debitis odio amet voluptas distinctio dicta placeat! Et pariatur doloremque ea veniam.
-							</blockquote>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="item">
-					<div class="testimonial-item">
-						<div  class="testimonial-item-inner">
-							<div class="testimonial-author mb-5">
-								<img src="/static/images/person_3.jpg" alt="Image" class="img-fluid">
-								<strong class="d-block">James Campbell</strong>
-								<span>CEO, Co-Founder</span>
-							</div>
-							<blockquote>
-								Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque. Veniam quidem debitis odio amet voluptas distinctio dicta placeat! Et pariatur doloremque ea veniam.
-							</blockquote>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="item">
-					<div class="testimonial-item">
-						<div  class="testimonial-item-inner">
-							<div class="testimonial-author mb-5">
-								<img src="/static/images/person_4.jpg" alt="Image" class="img-fluid">
-								<strong class="d-block">James Campbell</strong>
-								<span>CEO, Co-Founder</span>
-							</div>
-							<blockquote>
-								Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque. Veniam quidem debitis odio amet voluptas distinctio dicta placeat! Et pariatur doloremque ea veniam.
-							</blockquote>
-
-						</div>
-					</div>
-				</div>
-
-
-				<div class="item">
-					<div class="testimonial-item">
-						<div  class="testimonial-item-inner">
-							<div class="testimonial-author mb-5">
-								<img src="/static/images/person_5.jpg" alt="Image" class="img-fluid">
-								<strong class="d-block">James Campbell</strong>
-								<span>CEO, Co-Founder</span>
-							</div>
-							<blockquote>
-								Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque. Veniam quidem debitis odio amet voluptas distinctio dicta placeat! Et pariatur doloremque ea veniam.
-							</blockquote>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="item">
-					<div class="testimonial-item">
-						<div  class="testimonial-item-inner">
-							<div class="testimonial-author mb-5">
-								<img src="/static/images/person_2.jpg" alt="Image" class="img-fluid">
-								<strong class="d-block">James Campbell</strong>
-								<span>CEO, Co-Founder</span>
-							</div>
-							<blockquote>
-								Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque. Veniam quidem debitis odio amet voluptas distinctio dicta placeat! Et pariatur doloremque ea veniam.
-							</blockquote>
-
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="testimonial-item">
-						<div  class="testimonial-item-inner">
-							<div class="testimonial-author mb-5">
-								<img src="/static/images/person_3.jpg" alt="Image" class="img-fluid">
-								<strong class="d-block">James Campbell</strong>
-								<span>CEO, Co-Founder</span>
-							</div>
-							<blockquote>
-								Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque. Veniam quidem debitis odio amet voluptas distinctio dicta placeat! Et pariatur doloremque ea veniam.
-							</blockquote>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="item">
-					<div class="testimonial-item">
-						<div  class="testimonial-item-inner">
-							<div class="testimonial-author mb-5">
-								<img src="/static/images/person_4.jpg" alt="Image" class="img-fluid">
-								<strong class="d-block">James Campbell</strong>
-								<span>CEO, Co-Founder</span>
-							</div>
-							<blockquote>
-								Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque. Veniam quidem debitis odio amet voluptas distinctio dicta placeat! Et pariatur doloremque ea veniam.
-							</blockquote>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="item">
-					<div class="testimonial-item">
-						<div  class="testimonial-item-inner">
-							<div class="testimonial-author mb-5">
-								<img src="/static/images/person_1.jpg" alt="Image" class="img-fluid">
-								<strong class="d-block">James Campbell</strong>
-								<span>CEO, Co-Founder</span>
-							</div>
-							<blockquote>
-								Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque. Veniam quidem debitis odio amet voluptas distinctio dicta placeat! Et pariatur doloremque ea veniam.
-							</blockquote>
-
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-
-	<div class="section">
-		<div class="container">
-			<div class="row border-bottom mb-5 pb-5 justify-content-between">
-				<div class="col-lg-4 align-self-center mb-5">
-					<span class="d-block subheading mb-3">We are committed</span>
-					<h2 class="heading mb-4">The road of success is always under construction</h2>
-					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-				</div>
-				<div class="col-lg-7">
-					<a href="https://www.youtube.com/watch?v=mwtbEGNABWU" class="video-wrap glightbox">
-						<span class="icon-play"></span>
-						<img src="/static/images/img_4.jpg" alt="Image" class="img-fluid">
-					</a>
-				</div>
-			</div>
-			<div class="row g-5">
-				<div class="col-lg-4">
-
-					<div class="d-flex custom-card">
-						<div class="img">
-							<i class="flaticon-compass"></i>
-						</div>
-						<div class="text">
-							<h3 class="h6 fw-bold text-black">We provide best services</h3>
-							<p class="text-black-50">Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium.</p>
-							<p>
-								<a href="#" class="more-2">Learn more <span class="icon-arrow_forward"></span></a>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="d-flex custom-card">
-						<div class="img">
-							<i class="flaticon-plan"></i>
-						</div>
-						<div class="text">
-							<h3 class="h6 fw-bold text-black">We provide best services</h3>
-							<p class="text-black-50">Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium.</p>
-							<p>
-								<a href="#" class="more-2">Learn more <span class="icon-arrow_forward"></span></a>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="d-flex custom-card">
-						<div class="img">
-							<i class="flaticon-architect"></i>
-						</div>
-						<div class="text">
-							<h3 class="h6 fw-bold text-black">We provide best services</h3>
-							<p class="text-black-50">Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium.</p>
-							<p>
-								<a href="#" class="more-2">Learn more <span class="icon-arrow_forward"></span></a>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-
-	<div class="site-footer bg-light">
-		<div class="container">
-
-			<div class="row justify-content-between">
-				<div class="col-lg-4">
-					<div class="widget">
-						<h3 class="line-top">About</h3>
-						<p class="mb-5">Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque. Veniam quidem debitis odio amet voluptas distinctio dicta placeat! Et pariatur doloremque ea veniam. Separated they live.</p>
-
-					</div>
-					<div class="widget">
-						<h3 class="line-top">Connect with us</h3>
-						<ul class="social list-unstyled mb-5">
-							<li><a href="#"><span class="icon-facebook"></span></a></li>
-							<li><a href="#"><span class="icon-twitter"></span></a></li>
-							<li><a href="#"><span class="icon-instagram"></span></a></li>
-							<li><a href="#"><span class="icon-dribbble"></span></a></li>
-							<li><a href="#"><span class="icon-linkedin"></span></a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="row">
-						<div class="col-12">
-							<div class="widget">
-								<h3 class="line-top">Navigations</h3>
-							</div>
-						</div>
-						<div class="col-6 col-sm-6 col-md-4">
-							<div class="widget">
-								<ul class="links list-unstyled">
-									<li><a href="#">Home</a></li>
-									<li><a href="#">Services</a></li>
-									<li><a href="#">Work</a></li>
-									<li><a href="#">Process</a></li>
-									<li><a href="#">About Us</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-6 col-sm-6 col-md-4">
-							<div class="widget">
-								<ul class="links list-unstyled">
-									<li><a href="#">Press</a></li>
-									<li><a href="#">Blog</a></li>
-									<li><a href="#">Contact</a></li>
-									<li><a href="#">Support</a></li>
-									<li><a href="#">Privacy</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-6 col-sm-6 col-md-4">
-							<div class="widget">
-								<ul class="links list-unstyled">
-									<li><a href="#">Privacy</a></li>
-									<li><a href="#">FAQ</a></li>
-									<li><a href="#">Careers</a></li>
-									<li><a href="#">Process</a></li>
-									<li><a href="#">About Us</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row justify-content-center text-center copyright">
-				<div class="col-md-8">
-					<br class="small text-black-50">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a href="https://untree.co">Untree.co</a> </br>Distributed By <a href="https://themewagon.com/" >Themewagon</a> </p><!-- License information: https://untree.co/license/ -->
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</body>
-</html>
+{% block extra_scripts %}
+<script>
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const filter = this.dataset.filter;
+            document.querySelectorAll('#projects-grid [data-category]').forEach(item => {
+                if (filter === 'all' || item.dataset.category === filter) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

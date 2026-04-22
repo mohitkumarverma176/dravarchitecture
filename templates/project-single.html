@@ -1,420 +1,193 @@
 {% extends 'base.html' %}
 
-{% block title %}Project — Drav Architecture{% endblock %}
+{% block title %}Munirika Residence — Drav Architecture{% endblock %}
+{% block meta_description %}Detailed view of the Munirika Residence project by Drav Architecture — a luxury residential design in New Delhi.{% endblock %}
+
+{% block nav_projects %}active{% endblock %}
 
 {% block content %}
-<nav class="site-nav">
-		<div class="container">
-			<div class="site-navigation">
-				<a href="{{ url_for('home') }}" class="logo m-0 float-start">rDrav Architecturee<span class="text-primary">.</span> </a>
 
-				<ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-start">
-					<li><a href="{{ url_for('home') }}">Home</a></li>
-					<li class="has-children active">
-						<a href="{{ url_for('projects') }}">Projects</a>
-						<ul class="dropdown">
-							<li><a href="#">Commercial Building</a></li>
-							<li><a href="#">Cultural Lifestyle</a></li>
-							<li class="has-children">
-								<a href="#">Dropdown</a>
-								<ul class="dropdown">
-									<li><a href="#">Sub Menu One</a></li>
-									<li><a href="#">Sub Menu Two</a></li>
-									<li><a href="#">Sub Menu Three</a></li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-					<li><a href="{{ url_for('services') }}">Services</a></li>
-					<li><a href="{{ url_for('about') }}">About</a></li>
-					<li><a href="{{ url_for('contact') }}">Contact Us</a></li>
-				</ul>
-
-				<a href="#" class="burger ml-auto float-end site-menu-toggle light js-menu-toggle d-inline-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">
-					<span></span>
-				</a>
-				<ul class="site-menu float-end d-none d-md-block">
-					<li><a href="#" class="d-flex align-items-center text-white h2 fw-bold"><span class="icon-phone me-2"></span> <span>+918878860664</span></a></li>
-				</ul>
-
-			</div>
-		</div>
-	</nav>
+<!-- Hero -->
+<div class="hero-2 hero-inner overlay" style="background-image: url('{{ url_for("static", filename="images/img_3.jpg") }}');">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7 mx-auto text-center">
+                <p class="eyebrow light" data-aos="fade-up">Residential Architecture</p>
+                <h1 class="display-heading text-white" data-aos="fade-up" data-aos-delay="100">Munirika Residence</h1>
+                <hr class="hero-rule mx-auto" data-aos="fade-up" data-aos-delay="200">
+                <p class="text-white" data-aos="fade-up" data-aos-delay="250">A sophisticated residential project in New Delhi, blending contemporary architecture with functional landscape design to create a premium living environment.</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 
+<!-- Project Detail -->
+<div class="section">
+    <div class="container">
 
-	<div class="hero-2 overlay" style="background-image: url('{{ url_for("static", filename="images/img_3.jpg") }}');">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-5 mx-auto ">
-					<h1 class="mb-5 text-center"><span>Project One</span></h1>
+        <div class="row mb-5 justify-content-between align-items-center g-5">
+            <div class="col-lg-6">
+                <img src="{{ url_for('static', filename='images/img_7.jpg') }}" alt="Munirika Residence" class="img-fluid">
+            </div>
+            <div class="col-lg-5">
+                <p class="eyebrow">Project Overview</p>
+                <h2 class="section-heading mb-4">A Residence Built Around Living</h2>
+                <p>The Munirika Residence is a landmark residential project demonstrating Drav Architecture's expertise in blending modern design sensibilities with practical living requirements. The project encompasses architectural planning, landscape design, and interior coordination.</p>
+                <p>Our team worked closely with the client to deliver a design that maximises natural light, integrates green spaces, and maintains a seamless flow between indoor and outdoor environments — hallmarks of the Drav Architecture approach.</p>
+                <p>The residence features carefully considered spatial planning, premium material selection, and detailed landscape integration including native plantings and a functional outdoor entertaining area.</p>
+                <p class="mt-4"><a href="{{ url_for('contact') }}" class="btn btn-dark">Enquire About This Project</a></p>
+            </div>
+        </div>
 
+        <!-- Project Meta -->
+        <div class="row g-3 border-top pt-4">
+            <div class="col-sm-3">
+                <span class="eyebrow mb-1">Location</span>
+                <strong class="d-block">New Delhi</strong>
+            </div>
+            <div class="col-sm-3">
+                <span class="eyebrow mb-1">Category</span>
+                <strong class="d-block">Residential Architecture</strong>
+            </div>
+            <div class="col-sm-3">
+                <span class="eyebrow mb-1">Services</span>
+                <strong class="d-block">Architecture + Landscape</strong>
+            </div>
+            <div class="col-sm-3">
+                <span class="eyebrow mb-1">Status</span>
+                <strong class="d-block">Completed</strong>
+            </div>
+        </div>
 
-					<div class="intro-desc text-left">
-						<div class="line"></div>
-						<p>Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<div class="section sec-3">
-		<div class="container">
-
-			<div class="row mb-5 justify-content-between">
-				<div class="col-lg-6 mb-lg-0 mb-4">
-					<img src="{{ url_for('static', filename='images/img_7.jpg') }}" alt="Image" class="img-fluid">
-				</div>
-				<div class="col-lg-5">
-					<div class="heading">Description</div>
-					<p>Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque.</p>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae placeat, unde sequi quas ipsum illo? Commodi accusantium, sit eveniet? Maiores tempora corporis ea nostrum magnam similique optio autem, dolor incidunt?</p>
-					<p>Recusandae quam dicta repellat consequatur, facilis magnam minus unde, asperiores voluptatibus temporibus obcaecati, nihil libero. Maxime consectetur asperiores excepturi quidem deleniti, autem incidunt? Error nisi, eius fugiat expedita quia cupiditate!</p>
-					<p><a href="#" class="btn btn-primary">Visit Website</a></p>
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-3 border-left">
-					<span class="text-black-50 d-block">Work year:</span>  2020
-				</div>
-				<div class="col-sm-3 border-left">
-					<span class="text-black-50 d-block">Client:</span> XYZ Inc.
-				</div>
-				<div class="col-sm-3 border-left">
-					<span class="text-black-50 d-block">Started:</span> 25 Jan 2020
-				</div>
-				<div class="col-sm-3 border-left">
-					<span class="text-black-50 d-block">Finished:</span> 02 Dec 2020
-				</div>
-			</div>
-		</div>
-	</div>
+    </div>
+</div>
 
 
-	<div class="section sec-5">
-		<div class="container">
-			<div class="row mb-5">
-				<div class="col-lg-6">
-					<h2 class="heading">Related Projects</h2>
-				</div>
-				<div class="col-lg-6 ms-auto">
-					<p>Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque.</p>
-				</div>
-			</div>
+<!-- Related Projects -->
+<div class="section" style="background-color: var(--da-off-white);">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-6">
+                <p class="eyebrow">More Work</p>
+                <h2 class="section-heading">Related Projects</h2>
+            </div>
+            <div class="col-lg-5 ms-auto d-flex align-items-center">
+                <p class="mb-0">Explore more of our architecture and landscape design projects across India. Each project reflects our commitment to quality and innovation.</p>
+            </div>
+        </div>
 
-			<div class="row g-4">
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-					<div class="single-portfolio">
-						<a href="{{ url_for('project_single') }}">
-							<img src="{{ url_for('static', filename='images/img_8.jpg') }}" alt="Image" class="img-fluid">
-							<div class="contents">
-								<h3>Project One</h3>
-								<div class="cat">Construction</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-					<div class="single-portfolio">
-						<a href="{{ url_for('project_single') }}">
-							<img src="{{ url_for('static', filename='images/img_2.jpg') }}" alt="Image" class="img-fluid">
-							<div class="contents">
-								<h3>Project Two</h3>
-								<div class="cat">Construction</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-					<div class="single-portfolio">
-						<a href="{{ url_for('project_single') }}">
-							<img src="{{ url_for('static', filename='images/img_3.jpg') }}" alt="Image" class="img-fluid">
-							<div class="contents">
-								<h3>Project One</h3>
-								<div class="cat">Construction</div>
-							</div>
-						</a>
-					</div>
-				</div>
+        <div class="row g-1">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <div class="single-portfolio">
+                    <a href="{{ url_for('project_single') }}">
+                        <img src="{{ url_for('static', filename='images/img_8.jpg') }}" alt="DPS School Lucknow" class="img-fluid">
+                        <div class="contents">
+                            <div class="cat">Landscape Design</div>
+                            <h3>DPS School</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <div class="single-portfolio">
+                    <a href="{{ url_for('project_single') }}">
+                        <img src="{{ url_for('static', filename='images/img_2.jpg') }}" alt="Nirala Aspire Greater Noida" class="img-fluid">
+                        <div class="contents">
+                            <div class="cat">Landscape Design</div>
+                            <h3>Nirala Aspire</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <div class="single-portfolio">
+                    <a href="{{ url_for('project_single') }}">
+                        <img src="{{ url_for('static', filename='images/img_4.jpg') }}" alt="SDRF Bihar" class="img-fluid">
+                        <div class="contents">
+                            <div class="cat">Institutional Architecture</div>
+                            <h3>SDRF Bihar</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
 
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-					<div class="single-portfolio">
-						<a href="{{ url_for('project_single') }}">
-							<img src="{{ url_for('static', filename='images/img_4.jpg') }}" alt="Image" class="img-fluid">
-							<div class="contents">
-								<h3>Project One</h3>
-								<div class="cat">Construction</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-					<div class="single-portfolio">
-						<a href="{{ url_for('project_single') }}">
-							<img src="{{ url_for('static', filename='images/img_5.jpg') }}" alt="Image" class="img-fluid">
-							<div class="contents">
-								<h3>Project Two</h3>
-								<div class="cat">Construction</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-					<div class="single-portfolio">
-						<a href="{{ url_for('project_single') }}">
-							<img src="{{ url_for('static', filename='images/img_6.jpg') }}" alt="Image" class="img-fluid">
-							<div class="contents">
-								<h3>Project One</h3>
-								<div class="cat">Construction</div>
-							</div>
-						</a>
-					</div>
-				</div>
-
-				
-			</div>
-		</div>
-	</div>
+        <div class="text-center mt-5">
+            <a href="{{ url_for('projects') }}" class="btn btn-dark btn-lg">View All Projects</a>
+        </div>
+    </div>
+</div>
 
 
-	<div class="sec-4 section bg-light">
+<!-- Testimonials -->
+<div class="section">
+    <div class="container text-center mb-5">
+        <p class="eyebrow">Client Feedback</p>
+        <h2 class="section-heading">What Our Clients Say</h2>
+    </div>
+    <div class="testimonial-slide-center-wrap" data-aos="fade-up" data-aos-delay="100">
+        <div class="testimonial-slide-center testimonial-center" id="testimonial-center">
 
-		<div class="text-center mb-5">
-			<h2 class="heading mb-5 text-center">Testimonial</h2>
-		</div>
-		<div class="testimonial-slide-center-wrap" data-aos="fade-up" data-aos-delay="100">
-			<div class="testimonial-slide-center testimonial-center" id="testimonial-center">
+            <div class="item">
+                <div class="testimonial-item">
+                    <div class="testimonial-item-inner">
+                        <div class="testimonial-author mb-5">
+                            <div class="avatar-ring"><span class="avatar-initials">SM</span></div>
+                            <strong class="d-block">Sunil Munirika</strong>
+                            <span>Resident, New Delhi</span>
+                        </div>
+                        <blockquote>
+                            Drav Architecture transformed our vision into reality. The team's attention to detail, especially in the landscape integration and spatial planning, exceeded our expectations. The result is a home we are truly proud of.
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
 
-				<div class="item">
-					<div class="testimonial-item">
-						<div  class="testimonial-item-inner">
-							<div class="testimonial-author mb-5">
-								<img src="{{ url_for('static', filename='images/person_2.jpg') }}" alt="Image" class="img-fluid">
-								<strong class="d-block">James Campbell</strong>
-								<span>CEO, Co-Founder</span>
-							</div>
-							<blockquote>
-								Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque. Veniam quidem debitis odio amet voluptas distinctio dicta placeat! Et pariatur doloremque ea veniam.
-							</blockquote>
+            <div class="item">
+                <div class="testimonial-item">
+                    <div class="testimonial-item-inner">
+                        <div class="testimonial-author mb-5">
+                            <div class="avatar-ring"><span class="avatar-initials">AM</span></div>
+                            <strong class="d-block">Amrapali Project Manager</strong>
+                            <span>Amrapali Group, Lucknow</span>
+                        </div>
+                        <blockquote>
+                            The landscape design for our residential township was executed with exceptional professionalism. Drav Architecture delivered a green environment that our residents love. We highly recommend them for large-scale landscape work.
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
 
-						</div>
-					</div>
-				</div>
+            <div class="item">
+                <div class="testimonial-item">
+                    <div class="testimonial-item-inner">
+                        <div class="testimonial-author mb-5">
+                            <div class="avatar-ring"><span class="avatar-initials">SD</span></div>
+                            <strong class="d-block">SDRF Director</strong>
+                            <span>State Disaster Response Force, Bihar</span>
+                        </div>
+                        <blockquote>
+                            The institutional design for our facility was handled with utmost seriousness and technical rigour. The finished complex is functional, durable, and aesthetically considered. We are pleased with the outcome.
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
 
-				<div class="item">
-					<div class="testimonial-item">
-						<div  class="testimonial-item-inner">
-							<div class="testimonial-author mb-5">
-								<img src="{{ url_for('static', filename='images/person_1.jpg') }}" alt="Image" class="img-fluid">
-								<strong class="d-block">James Campbell</strong>
-								<span>CEO, Co-Founder</span>
-							</div>
-							<blockquote>
-								Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque. Veniam quidem debitis odio amet voluptas distinctio dicta placeat! Et pariatur doloremque ea veniam.
-							</blockquote>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="item">
-					<div class="testimonial-item">
-						<div  class="testimonial-item-inner">
-							<div class="testimonial-author mb-5">
-								<img src="{{ url_for('static', filename='images/person_3.jpg') }}" alt="Image" class="img-fluid">
-								<strong class="d-block">James Campbell</strong>
-								<span>CEO, Co-Founder</span>
-							</div>
-							<blockquote>
-								Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque. Veniam quidem debitis odio amet voluptas distinctio dicta placeat! Et pariatur doloremque ea veniam.
-							</blockquote>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="item">
-					<div class="testimonial-item">
-						<div  class="testimonial-item-inner">
-							<div class="testimonial-author mb-5">
-								<img src="{{ url_for('static', filename='images/person_4.jpg') }}" alt="Image" class="img-fluid">
-								<strong class="d-block">James Campbell</strong>
-								<span>CEO, Co-Founder</span>
-							</div>
-							<blockquote>
-								Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque. Veniam quidem debitis odio amet voluptas distinctio dicta placeat! Et pariatur doloremque ea veniam.
-							</blockquote>
-
-						</div>
-					</div>
-				</div>
+        </div>
+    </div>
+</div>
 
 
-				<div class="item">
-					<div class="testimonial-item">
-						<div  class="testimonial-item-inner">
-							<div class="testimonial-author mb-5">
-								<img src="{{ url_for('static', filename='images/person_5.jpg') }}" alt="Image" class="img-fluid">
-								<strong class="d-block">James Campbell</strong>
-								<span>CEO, Co-Founder</span>
-							</div>
-							<blockquote>
-								Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque. Veniam quidem debitis odio amet voluptas distinctio dicta placeat! Et pariatur doloremque ea veniam.
-							</blockquote>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="item">
-					<div class="testimonial-item">
-						<div  class="testimonial-item-inner">
-							<div class="testimonial-author mb-5">
-								<img src="{{ url_for('static', filename='images/person_2.jpg') }}" alt="Image" class="img-fluid">
-								<strong class="d-block">James Campbell</strong>
-								<span>CEO, Co-Founder</span>
-							</div>
-							<blockquote>
-								Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque. Veniam quidem debitis odio amet voluptas distinctio dicta placeat! Et pariatur doloremque ea veniam.
-							</blockquote>
-
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="testimonial-item">
-						<div  class="testimonial-item-inner">
-							<div class="testimonial-author mb-5">
-								<img src="{{ url_for('static', filename='images/person_3.jpg') }}" alt="Image" class="img-fluid">
-								<strong class="d-block">James Campbell</strong>
-								<span>CEO, Co-Founder</span>
-							</div>
-							<blockquote>
-								Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque. Veniam quidem debitis odio amet voluptas distinctio dicta placeat! Et pariatur doloremque ea veniam.
-							</blockquote>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="item">
-					<div class="testimonial-item">
-						<div  class="testimonial-item-inner">
-							<div class="testimonial-author mb-5">
-								<img src="{{ url_for('static', filename='images/person_4.jpg') }}" alt="Image" class="img-fluid">
-								<strong class="d-block">James Campbell</strong>
-								<span>CEO, Co-Founder</span>
-							</div>
-							<blockquote>
-								Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque. Veniam quidem debitis odio amet voluptas distinctio dicta placeat! Et pariatur doloremque ea veniam.
-							</blockquote>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="item">
-					<div class="testimonial-item">
-						<div  class="testimonial-item-inner">
-							<div class="testimonial-author mb-5">
-								<img src="{{ url_for('static', filename='images/person_1.jpg') }}" alt="Image" class="img-fluid">
-								<strong class="d-block">James Campbell</strong>
-								<span>CEO, Co-Founder</span>
-							</div>
-							<blockquote>
-								Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque. Veniam quidem debitis odio amet voluptas distinctio dicta placeat! Et pariatur doloremque ea veniam.
-							</blockquote>
-
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-
-
-	
-
-	<div class="site-footer bg-light">
-		<div class="container">
-
-			<div class="row justify-content-between">
-				<div class="col-lg-4">
-					<div class="widget">
-						<h3 class="line-top">About</h3>
-						<p class="mb-5">Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut, doloribus officia ea molestias beatae laudantium, quam odio ipsum veritatis est maiores velit quasi blanditiis et natus accusamus itaque. Veniam quidem debitis odio amet voluptas distinctio dicta placeat! Et pariatur doloremque ea veniam. Separated they live.</p>
-
-					</div>
-					<div class="widget">
-						<h3 class="line-top">Connect with us</h3>
-						<ul class="social list-unstyled mb-5">
-							<li><a href="#"><span class="icon-facebook"></span></a></li>
-							<li><a href="#"><span class="icon-twitter"></span></a></li>
-							<li><a href="#"><span class="icon-instagram"></span></a></li>
-							<li><a href="#"><span class="icon-dribbble"></span></a></li>
-							<li><a href="#"><span class="icon-linkedin"></span></a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="row">
-						<div class="col-12">
-							<div class="widget">
-								<h3 class="line-top">Navigations</h3>
-							</div>
-						</div>
-						<div class="col-6 col-sm-6 col-md-4">
-							<div class="widget">
-								<ul class="links list-unstyled">
-									<li><a href="#">Home</a></li>
-									<li><a href="#">Services</a></li>
-									<li><a href="#">Work</a></li>
-									<li><a href="#">Process</a></li>
-									<li><a href="#">About Us</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-6 col-sm-6 col-md-4">
-							<div class="widget">
-								<ul class="links list-unstyled">
-									<li><a href="#">Press</a></li>
-									<li><a href="#">Blog</a></li>
-									<li><a href="#">Contact</a></li>
-									<li><a href="#">Support</a></li>
-									<li><a href="#">Privacy</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-6 col-sm-6 col-md-4">
-							<div class="widget">
-								<ul class="links list-unstyled">
-									<li><a href="#">Privacy</a></li>
-									<li><a href="#">FAQ</a></li>
-									<li><a href="#">Careers</a></li>
-									<li><a href="#">Process</a></li>
-									<li><a href="#">About Us</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row justify-content-center text-center copyright">
-				<div class="col-md-8">
-					<p class="small text-black-50">Copyright &copy;2025. All Rights Reserved. &mdash; Designed with Mohit Kumar Verma</p>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	
-
-
+<!-- CTA Banner -->
+<div class="cta-banner section">
+    <div class="container text-center">
+        <p class="eyebrow light">Start a Conversation</p>
+        <h2 class="section-heading text-white mb-3">Have a project in mind?</h2>
+        <p class="text-white mb-4">Let's discuss your vision. Our team is ready to help you create spaces that inspire.</p>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg me-2">Get in Touch</a>
+        <a href="{{ url_for('projects') }}" class="btn btn-white btn-lg">View All Projects</a>
+    </div>
+</div>
 
 {% endblock %}
