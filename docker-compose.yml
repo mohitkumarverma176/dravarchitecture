@@ -1,0 +1,15 @@
+services:
+  drav:
+    build: .
+    container_name: drav_architecture
+    restart: always
+    ports:
+      - "127.0.0.1:5000:5000"   # bind only to localhost — nginx proxies from outside
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:5000/health')\""]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
