@@ -64,7 +64,7 @@ Message:
 
         try:
             send_email(
-                recipient=os.environ.get("CONTACT_RECIPIENT", "smartmohitverma@gmail.com"),
+                recipient=os.environ.get("CONTACT_RECIPIENT", "dravarchitecture@outlook.com"),
                 subject=f"[Website] {subject}",
                 body=body
             )
@@ -77,7 +77,7 @@ Message:
 
 
 def send_email(recipient: str, subject: str, body: str):
-    smtp_host = os.environ.get("SMTP_HOST", "smtp.gmail.com")
+    smtp_host = os.environ.get("SMTP_HOST", "smtp.office365.com")
     smtp_port = int(os.environ.get("SMTP_PORT", "587"))
     smtp_user = os.environ.get("SMTP_USER")
     smtp_pass = os.environ.get("SMTP_PASS")
