@@ -17,7 +17,7 @@
                     <span class="accent-line">Services.</span>
                 </h1>
                 <hr class="hero-rule" data-aos="fade-up" data-aos-delay="160">
-                <p class="text-white mb-0" style="font-size:1rem; opacity:.7; max-width:500px; line-height:1.85;" data-aos="fade-up" data-aos-delay="200">
+                <p class="text-white mb-0" style="font-size:0.95rem; opacity:.6; max-width:500px; line-height:1.85;" data-aos="fade-up" data-aos-delay="200">
                     From concept to completion — comprehensive design services spanning architecture, landscape, interior, and engineering across India.
                 </p>
             </div>
@@ -25,7 +25,7 @@
     </div>
 </div>
 
-<!-- ══ SERVICES GRID ══ -->
+<!-- ══ SERVICES — Full-width alternating rows ══ -->
 <div class="section">
     <div class="container">
         <div class="row mb-5">
@@ -34,65 +34,100 @@
                 <h2 class="section-heading">End-to-End Design Services.</h2>
             </div>
             <div class="col-lg-5 ms-auto d-flex align-items-end" data-aos="fade-left">
-                <p style="font-size:0.92rem; color:#888; line-height:1.8;">Every service we offer is delivered by specialists with proven experience in their field.</p>
+                <p>Every service we offer is delivered by specialists with proven experience in their field.</p>
             </div>
         </div>
-        <div class="row g-0">
-            <div class="col-md-6" data-aos="fade-up" data-aos-delay="0">
-                <div class="service-card-lg">
-                    <div class="svc-icon"><i class="flaticon-architect"></i></div>
-                    <div class="svc-body">
-                        <h3>Architecture Design</h3>
-                        <p>We design buildings that respond to their site, purpose, and users — from initial concept through to detailed construction documentation. Residential, commercial, and institutional projects across India.</p>
-                    </div>
+
+        <!-- Row 01: Image left, text right -->
+        <div class="service-row" data-aos="fade-up">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5">
+                    <img src="{{ url_for('static', filename='images/img_7.jpg') }}" alt="Architecture Design">
                 </div>
-            </div>
-            <div class="col-md-6" data-aos="fade-up" data-aos-delay="80">
-                <div class="service-card-lg">
-                    <div class="svc-icon"><i class="flaticon-plan"></i></div>
-                    <div class="svc-body">
-                        <h3>Landscape Design</h3>
-                        <p>Our landscape practice creates outdoor environments that enhance community life and ecological resilience. Parks, gardens, recreational amenities, and green infrastructure for large housing developments and urban settings.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6" data-aos="fade-up" data-aos-delay="0">
-                <div class="service-card-lg">
-                    <div class="svc-icon"><i class="flaticon-compass"></i></div>
-                    <div class="svc-body">
-                        <h3>Interior Design</h3>
-                        <p>Interiors that balance comfort, functionality, and aesthetic character. From space planning and furniture layouts to material palettes and lighting — our interiors reflect the identity of the people who inhabit them.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6" data-aos="fade-up" data-aos-delay="80">
-                <div class="service-card-lg">
-                    <div class="svc-icon"><i class="flaticon-wall"></i></div>
-                    <div class="svc-body">
-                        <h3>Engineering &amp; Structural Plans</h3>
-                        <p>Precise engineering drawings and structural plans that coordinate all disciplines — civil, structural, and MEP — ensuring designs are fully buildable, code-compliant, and efficiently executed on site.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6" data-aos="fade-up" data-aos-delay="0">
-                <div class="service-card-lg">
-                    <div class="svc-icon"><i class="flaticon-color-palette"></i></div>
-                    <div class="svc-body">
-                        <h3>3D Visualization &amp; Rendering</h3>
-                        <p>Photorealistic 3D renderings and walkthrough animations that allow clients to experience their project before construction begins — enabling informed decisions and confident approvals at every design stage.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6" data-aos="fade-up" data-aos-delay="80">
-                <div class="service-card-lg">
-                    <div class="svc-icon"><i class="flaticon-ruler"></i></div>
-                    <div class="svc-body">
-                        <h3>Floor Plans &amp; Site Layouts</h3>
-                        <p>Clear, dimensioned floor plans and site layout drawings that communicate design intent effectively to clients, contractors, and statutory bodies — the foundation of every successful project.</p>
-                    </div>
+                <div class="col-lg-6 ms-auto">
+                    <span class="svc-number">01</span>
+                    <h3 class="svc-title">Architecture Design</h3>
+                    <p class="svc-desc">We design buildings that respond to their site, purpose, and users — from initial concept through to detailed construction documentation. Residential, commercial, and institutional projects across India.</p>
+                    <a href="{{ url_for('contact') }}" class="more-2">Start a project <span class="icon-arrow_forward"></span></a>
                 </div>
             </div>
         </div>
+
+        <!-- Row 02: Text left, image right -->
+        <div class="service-row" data-aos="fade-up">
+            <div class="row align-items-center g-5 flex-row-reverse">
+                <div class="col-lg-5">
+                    <img src="{{ url_for('static', filename='images/img_2.jpg') }}" alt="Landscape Design">
+                </div>
+                <div class="col-lg-6">
+                    <span class="svc-number">02</span>
+                    <h3 class="svc-title">Landscape Design</h3>
+                    <p class="svc-desc">Our landscape practice creates outdoor environments that enhance community life and ecological resilience. Parks, gardens, recreational amenities, and green infrastructure for large housing developments and urban settings.</p>
+                    <a href="{{ url_for('contact') }}" class="more-2">Start a project <span class="icon-arrow_forward"></span></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 03: Image left, text right -->
+        <div class="service-row" data-aos="fade-up">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5">
+                    <img src="{{ url_for('static', filename='images/img_3.jpg') }}" alt="Interior Design">
+                </div>
+                <div class="col-lg-6 ms-auto">
+                    <span class="svc-number">03</span>
+                    <h3 class="svc-title">Interior Design</h3>
+                    <p class="svc-desc">Interiors that balance comfort, functionality, and aesthetic character. From space planning and furniture layouts to material palettes and lighting — our interiors reflect the identity of the people who inhabit them.</p>
+                    <a href="{{ url_for('contact') }}" class="more-2">Start a project <span class="icon-arrow_forward"></span></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 04: Text left, image right -->
+        <div class="service-row" data-aos="fade-up">
+            <div class="row align-items-center g-5 flex-row-reverse">
+                <div class="col-lg-5">
+                    <img src="{{ url_for('static', filename='images/img_4.jpg') }}" alt="Engineering Plans">
+                </div>
+                <div class="col-lg-6">
+                    <span class="svc-number">04</span>
+                    <h3 class="svc-title">Engineering &amp; Structural Plans</h3>
+                    <p class="svc-desc">Precise engineering drawings and structural plans that coordinate all disciplines — civil, structural, and MEP — ensuring designs are fully buildable, code-compliant, and efficiently executed on site.</p>
+                    <a href="{{ url_for('contact') }}" class="more-2">Start a project <span class="icon-arrow_forward"></span></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 05: Image left, text right -->
+        <div class="service-row" data-aos="fade-up">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5">
+                    <img src="{{ url_for('static', filename='images/img_5.jpg') }}" alt="3D Visualization">
+                </div>
+                <div class="col-lg-6 ms-auto">
+                    <span class="svc-number">05</span>
+                    <h3 class="svc-title">3D Visualization &amp; Rendering</h3>
+                    <p class="svc-desc">Photorealistic 3D renderings and walkthrough animations that allow clients to experience their project before construction begins — enabling informed decisions and confident approvals at every design stage.</p>
+                    <a href="{{ url_for('contact') }}" class="more-2">Start a project <span class="icon-arrow_forward"></span></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 06: Text left, image right -->
+        <div class="service-row" data-aos="fade-up">
+            <div class="row align-items-center g-5 flex-row-reverse">
+                <div class="col-lg-5">
+                    <img src="{{ url_for('static', filename='images/img_6.jpg') }}" alt="Floor Plans">
+                </div>
+                <div class="col-lg-6">
+                    <span class="svc-number">06</span>
+                    <h3 class="svc-title">Floor Plans &amp; Site Layouts</h3>
+                    <p class="svc-desc">Clear, dimensioned floor plans and site layout drawings that communicate design intent effectively to clients, contractors, and statutory bodies — the foundation of every successful project.</p>
+                    <a href="{{ url_for('contact') }}" class="more-2">Start a project <span class="icon-arrow_forward"></span></a>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -105,7 +140,8 @@
                 <h2 class="section-heading">Our Project Process.</h2>
             </div>
         </div>
-        <div class="row g-0">
+        <div class="row g-0 process-steps-row">
+            <div class="process-line-draw"></div>
             <div class="col-6 col-md-4 col-lg" data-aos="fade-up" data-aos-delay="0">
                 <div class="process-step">
                     <span class="step-num">01</span>
@@ -157,8 +193,8 @@
     </div>
     <div class="testimonial-slide-center-wrap" data-aos="fade-up">
         <div id="testimonial-nav">
-            <span class="prev" data-controls="prev"><span class="icon-chevron-left"></span></span>
-            <span class="next" data-controls="next"><span class="icon-chevron-right"></span></span>
+            <span data-controls="prev"><span class="icon-chevron-left"></span></span>
+            <span data-controls="next"><span class="icon-chevron-right"></span></span>
         </div>
         <div class="testimonial-slide-center testimonial-center" id="testimonial-center">
             <div class="item">
@@ -206,7 +242,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-7 mb-4 mb-lg-0" data-aos="fade-right">
-                <span class="eyebrow" style="color:rgba(255,255,255,0.3);">Get Started</span>
+                <span class="eyebrow" style="color:rgba(245,244,240,0.25);">Get Started</span>
                 <h2>Ready to Get Started?</h2>
                 <p>Tell us about your project and we'll get back to you within 24 hours.</p>
             </div>

@@ -2,191 +2,207 @@
 
 {% block title %}Munirika Residence — Drav Architecture{% endblock %}
 {% block meta_description %}Detailed view of the Munirika Residence project by Drav Architecture — a luxury residential design in Prayagraj.{% endblock %}
-
 {% block nav_projects %}active{% endblock %}
 
 {% block content %}
 
-<!-- Hero -->
+<!-- ══ HERO ══ -->
 <div class="hero-2 hero-inner overlay" style="background-image: url('{{ url_for("static", filename="images/img_3.jpg") }}');">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-7 mx-auto text-center">
-                <p class="eyebrow light" data-aos="fade-up">Residential Architecture</p>
-                <h1 class="display-heading text-white" data-aos="fade-up" data-aos-delay="100">Munirika Residence</h1>
-                <hr class="hero-rule mx-auto" data-aos="fade-up" data-aos-delay="200">
-                <p class="text-white" data-aos="fade-up" data-aos-delay="250">A sophisticated residential project in Prayagraj, blending contemporary architecture with functional landscape design to create a premium living environment.</p>
+        <div class="row">
+            <div class="col-lg-7">
+                <span class="eyebrow light" data-aos="fade-up">Residential Architecture</span>
+                <h1 class="display-heading" data-aos="fade-up" data-aos-delay="80">
+                    <span>Munirika</span>
+                    <span class="accent-line">Residence.</span>
+                </h1>
+                <hr class="hero-rule" data-aos="fade-up" data-aos-delay="160">
+                <p class="text-white mb-0" style="font-size:0.95rem; opacity:.6; max-width:500px; line-height:1.85;" data-aos="fade-up" data-aos-delay="200">
+                    A sophisticated residential project in Prayagraj, blending contemporary architecture with functional landscape design to create a premium living environment.
+                </p>
             </div>
         </div>
     </div>
 </div>
 
+<!-- ══ PROJECT META STRIP ══ -->
+<div class="section sec-sm" style="background: var(--da-surface); border-bottom: 1px solid var(--da-border);">
+    <div class="container">
+        <div class="row g-4" data-aos="fade-up">
+            <div class="col-sm-6 col-md-3">
+                <span class="eyebrow mb-1">Location</span>
+                <strong class="d-block" style="font-size:0.95rem; color:var(--da-text);">Prayagraj, UP</strong>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <span class="eyebrow mb-1">Category</span>
+                <strong class="d-block" style="font-size:0.95rem; color:var(--da-text);">Residential Architecture</strong>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <span class="eyebrow mb-1">Services</span>
+                <strong class="d-block" style="font-size:0.95rem; color:var(--da-text);">Architecture + Landscape</strong>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <span class="eyebrow mb-1">Status</span>
+                <strong class="d-block" style="font-size:0.95rem; color:var(--da-orange);">Completed</strong>
+            </div>
+        </div>
+    </div>
+</div>
 
-<!-- Project Detail -->
+<!-- ══ PROJECT DETAIL ══ -->
 <div class="section">
     <div class="container">
-
         <div class="row mb-5 justify-content-between align-items-center g-5">
-            <div class="col-lg-6">
-                <img src="{{ url_for('static', filename='images/img_7.jpg') }}" alt="Munirika Residence" class="img-fluid">
+            <div class="col-lg-6" data-aos="fade-right">
+                <img src="{{ url_for('static', filename='images/img_7.jpg') }}" alt="Munirika Residence" class="img-fluid" style="width:100%; display:block;">
             </div>
-            <div class="col-lg-5">
-                <p class="eyebrow">Project Overview</p>
+            <div class="col-lg-5" data-aos="fade-left">
+                <span class="eyebrow">Project Overview</span>
                 <h2 class="section-heading mb-4">A Residence Built Around Living</h2>
-                <p>The Munirika Residence is a landmark residential project demonstrating Drav Architecture's expertise in blending modern design sensibilities with practical living requirements. The project encompasses architectural planning, landscape design, and interior coordination.</p>
-                <p>Our team worked closely with the client to deliver a design that maximises natural light, integrates green spaces, and maintains a seamless flow between indoor and outdoor environments — hallmarks of the Drav Architecture approach.</p>
-                <p>The residence features carefully considered spatial planning, premium material selection, and detailed landscape integration including native plantings and a functional outdoor entertaining area.</p>
-                <p class="mt-4"><a href="{{ url_for('contact') }}" class="btn btn-dark">Enquire About This Project</a></p>
+                <p class="mb-4">The Munirika Residence is a landmark residential project demonstrating Drav Architecture's expertise in blending modern design sensibilities with practical living requirements. The project encompasses architectural planning, landscape design, and interior coordination.</p>
+                <p class="mb-4">Our team worked closely with the client to deliver a design that maximises natural light, integrates green spaces, and maintains a seamless flow between indoor and outdoor environments — hallmarks of the Drav Architecture approach.</p>
+                <p class="mb-5">The residence features carefully considered spatial planning, premium material selection, and detailed landscape integration including native plantings and a functional outdoor entertaining area.</p>
+                <a href="{{ url_for('contact') }}" class="btn btn-primary">Enquire About This Project</a>
             </div>
         </div>
 
-        <!-- Project Meta -->
-        <div class="row g-3 border-top pt-4">
-            <div class="col-sm-3">
-                <span class="eyebrow mb-1">Location</span>
-                <strong class="d-block">Prayagraj, UP</strong>
+        <!-- Second image row -->
+        <div class="row g-1 mt-2" data-aos="fade-up">
+            <div class="col-md-8">
+                <img src="{{ url_for('static', filename='images/img_5.jpg') }}" alt="Munirika Residence exterior" class="img-fluid" style="width:100%; height:420px; object-fit:cover; display:block;">
             </div>
-            <div class="col-sm-3">
-                <span class="eyebrow mb-1">Category</span>
-                <strong class="d-block">Residential Architecture</strong>
-            </div>
-            <div class="col-sm-3">
-                <span class="eyebrow mb-1">Services</span>
-                <strong class="d-block">Architecture + Landscape</strong>
-            </div>
-            <div class="col-sm-3">
-                <span class="eyebrow mb-1">Status</span>
-                <strong class="d-block">Completed</strong>
+            <div class="col-md-4">
+                <img src="{{ url_for('static', filename='images/img_6.jpg') }}" alt="Munirika Residence detail" class="img-fluid" style="width:100%; height:420px; object-fit:cover; display:block;">
             </div>
         </div>
-
     </div>
 </div>
 
-
-<!-- Related Projects -->
-<div class="section" style="background-color: var(--da-off-white);">
+<!-- ══ RELATED PROJECTS ══ -->
+<div class="section bg-light">
     <div class="container">
         <div class="row mb-5">
-            <div class="col-lg-6">
-                <p class="eyebrow">More Work</p>
+            <div class="col-lg-6" data-aos="fade-right">
+                <span class="eyebrow">More Work</span>
                 <h2 class="section-heading">Related Projects</h2>
             </div>
-            <div class="col-lg-5 ms-auto d-flex align-items-center">
-                <p class="mb-0">Explore more of our architecture and landscape design projects across India. Each project reflects our commitment to quality and innovation.</p>
+            <div class="col-lg-5 ms-auto d-flex align-items-center" data-aos="fade-left">
+                <p class="mb-0">Explore more of our architecture and landscape design projects across India.</p>
             </div>
         </div>
-
         <div class="row g-1">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            <div class="col-sm-6 col-md-4">
                 <div class="single-portfolio">
                     <a href="{{ url_for('project_single') }}">
-                        <img src="{{ url_for('static', filename='images/img_8.jpg') }}" alt="DPS School Lucknow" class="img-fluid">
+                        <img src="{{ url_for('static', filename='images/img_8.jpg') }}" alt="DPS School Lucknow">
                         <div class="contents">
                             <div class="cat">Landscape Design</div>
                             <h3>DPS School</h3>
+                            <div class="proj-location">Lucknow, UP</div>
                         </div>
                     </a>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            <div class="col-sm-6 col-md-4">
                 <div class="single-portfolio">
                     <a href="{{ url_for('project_single') }}">
-                        <img src="{{ url_for('static', filename='images/img_2.jpg') }}" alt="Nirala Aspire Prayagraj" class="img-fluid">
+                        <img src="{{ url_for('static', filename='images/img_2.jpg') }}" alt="Nirala Aspire Prayagraj">
                         <div class="contents">
                             <div class="cat">Landscape Design</div>
                             <h3>Nirala Aspire</h3>
+                            <div class="proj-location">Prayagraj, UP</div>
                         </div>
                     </a>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            <div class="col-sm-6 col-md-4">
                 <div class="single-portfolio">
                     <a href="{{ url_for('project_single') }}">
-                        <img src="{{ url_for('static', filename='images/img_4.jpg') }}" alt="SDRF Bihar" class="img-fluid">
+                        <img src="{{ url_for('static', filename='images/img_4.jpg') }}" alt="SDRF Bihar">
                         <div class="contents">
                             <div class="cat">Institutional Architecture</div>
                             <h3>SDRF Bihar</h3>
+                            <div class="proj-location">Ayodhya, UP</div>
                         </div>
                     </a>
                 </div>
             </div>
         </div>
-
-        <div class="text-center mt-5">
-            <a href="{{ url_for('projects') }}" class="btn btn-dark btn-lg">View All Projects</a>
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="{{ url_for('projects') }}" class="btn btn-outline-dark">View All Projects</a>
         </div>
     </div>
 </div>
 
-
-<!-- Testimonials -->
+<!-- ══ TESTIMONIALS ══ -->
 <div class="section">
-    <div class="container text-center mb-5">
-        <p class="eyebrow">Client Feedback</p>
-        <h2 class="section-heading">What Our Clients Say</h2>
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-lg-5" data-aos="fade-right">
+                <span class="eyebrow">Client Feedback</span>
+                <h2 class="section-heading">What Our Clients Say.</h2>
+            </div>
+        </div>
     </div>
-    <div class="testimonial-slide-center-wrap" data-aos="fade-up" data-aos-delay="100">
+    <div class="testimonial-slide-center-wrap" data-aos="fade-up">
+        <div id="testimonial-nav">
+            <span data-controls="prev"><span class="icon-chevron-left"></span></span>
+            <span data-controls="next"><span class="icon-chevron-right"></span></span>
+        </div>
         <div class="testimonial-slide-center testimonial-center" id="testimonial-center">
-
             <div class="item">
                 <div class="testimonial-item">
                     <div class="testimonial-item-inner">
-                        <div class="testimonial-author mb-5">
+                        <div class="testimonial-author mb-4">
                             <div class="avatar-ring"><span class="avatar-initials">SM</span></div>
-                            <strong class="d-block">Sunil Munirika</strong>
+                            <strong class="d-block mt-2">Sunil Munirika</strong>
                             <span>Resident, Prayagraj</span>
                         </div>
-                        <blockquote>
-                            Drav Architecture transformed our vision into reality. The team's attention to detail, especially in the landscape integration and spatial planning, exceeded our expectations. The result is a home we are truly proud of.
-                        </blockquote>
+                        <blockquote>Drav Architecture transformed our vision into reality. The team's attention to detail, especially in the landscape integration and spatial planning, exceeded our expectations. The result is a home we are truly proud of.</blockquote>
                     </div>
                 </div>
             </div>
-
             <div class="item">
                 <div class="testimonial-item">
                     <div class="testimonial-item-inner">
-                        <div class="testimonial-author mb-5">
+                        <div class="testimonial-author mb-4">
                             <div class="avatar-ring"><span class="avatar-initials">AM</span></div>
-                            <strong class="d-block">Amrapali Project Manager</strong>
+                            <strong class="d-block mt-2">Amrapali Project Manager</strong>
                             <span>Amrapali Group, Lucknow</span>
                         </div>
-                        <blockquote>
-                            The landscape design for our residential township was executed with exceptional professionalism. Drav Architecture delivered a green environment that our residents love. We highly recommend them for large-scale landscape work.
-                        </blockquote>
+                        <blockquote>The landscape design for our residential township was executed with exceptional professionalism. Drav Architecture delivered a green environment that our residents love. We highly recommend them for large-scale landscape work.</blockquote>
                     </div>
                 </div>
             </div>
-
             <div class="item">
                 <div class="testimonial-item">
                     <div class="testimonial-item-inner">
-                        <div class="testimonial-author mb-5">
+                        <div class="testimonial-author mb-4">
                             <div class="avatar-ring"><span class="avatar-initials">SD</span></div>
-                            <strong class="d-block">SDRF Director</strong>
+                            <strong class="d-block mt-2">SDRF Director</strong>
                             <span>State Disaster Response Force, Bihar</span>
                         </div>
-                        <blockquote>
-                            The institutional design for our facility was handled with utmost seriousness and technical rigour. The finished complex is functional, durable, and aesthetically considered. We are pleased with the outcome.
-                        </blockquote>
+                        <blockquote>The institutional design for our facility was handled with utmost seriousness and technical rigour. The finished complex is functional, durable, and aesthetically considered. We are pleased with the outcome.</blockquote>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
 
-
-<!-- CTA Banner -->
-<div class="cta-banner section">
-    <div class="container text-center">
-        <p class="eyebrow light">Start a Conversation</p>
-        <h2 class="section-heading text-white mb-3">Have a project in mind?</h2>
-        <p class="text-white mb-4">Let's discuss your vision. Our team is ready to help you create spaces that inspire.</p>
-        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg me-2">Get in Touch</a>
-        <a href="{{ url_for('projects') }}" class="btn btn-white btn-lg">View All Projects</a>
+<!-- ══ CTA BANNER ══ -->
+<div class="cta-banner">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7 mb-4 mb-lg-0" data-aos="fade-right">
+                <span class="eyebrow" style="color:rgba(245,244,240,0.25);">Start a Conversation</span>
+                <h2>Have a Project in Mind?</h2>
+                <p>Let's discuss your vision. Our team is ready to help you create spaces that inspire.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end" data-aos="fade-left">
+                <a href="{{ url_for('contact') }}" class="btn-white me-3">Get in Touch</a>
+            </div>
+        </div>
     </div>
 </div>
 

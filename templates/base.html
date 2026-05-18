@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Drav Architecture">
 
-    <!-- SVG Favicon — no file needed -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111111'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%23fc5404'%3EDA%3C/text%3E%3C/svg%3E">
-    <link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111111'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%23fc5404'%3EDA%3C/text%3E%3C/svg%3E">
+    <!-- SVG Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%23fc5404'%3EDA%3C/text%3E%3C/svg%3E">
+    <link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%23fc5404'%3EDA%3C/text%3E%3C/svg%3E">
 
     <meta name="description" content="{% block meta_description %}Drav Architecture — Expert Architecture, Landscape Design & Interior Planning across India.{% endblock %}">
     <meta name="keywords" content="{% block meta_keywords %}architecture, landscape design, interior design, engineering plan, India{% endblock %}">
@@ -29,6 +29,10 @@
 </head>
 <body>
 
+<!-- Custom Cursor -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
 <!-- Mobile Menu -->
 <div class="site-mobile-menu site-navbar-target">
     <div class="site-mobile-menu-header">
@@ -40,7 +44,7 @@
 </div>
 
 <!-- Navigation -->
-<nav class="site-nav">
+<nav class="site-nav" id="site-nav">
     <div class="container">
         <div class="site-navigation">
             <a href="{{ url_for('home') }}" class="logo m-0 float-start">
@@ -69,8 +73,8 @@
             </a>
             <ul class="site-menu float-end d-none d-md-block">
                 <li>
-                    <a href="tel:+918878860664" class="d-flex align-items-center text-white fw-bold" style="font-size:0.85rem; letter-spacing:0.06em;">
-                        <span class="icon-phone me-2" style="font-size:1rem;"></span>
+                    <a href="tel:+918878860664" class="d-flex align-items-center text-white fw-bold" style="font-size:0.75rem; letter-spacing:0.08em; opacity:0.75;">
+                        <span class="icon-phone me-2" style="font-size:0.9rem;"></span>
                         <span>+91 88788 60664</span>
                     </a>
                 </li>
@@ -87,7 +91,7 @@
 
 <!-- Floating WhatsApp CTA -->
 <a href="https://wa.me/918878860664" class="floating-cta" target="_blank" rel="noopener" title="Chat on WhatsApp">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="26" height="26">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24" height="24">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
     </svg>
 </a>
@@ -95,17 +99,24 @@
 <!-- Preloader -->
 <div id="overlayer"></div>
 <div class="loader">
-    <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
+    <div class="loader-inner">
+        <span class="loader-logo">DA</span>
+        <div class="loader-line"></div>
     </div>
 </div>
 
+<!-- Scripts -->
 <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/tiny-slider.js') }}"></script>
 <script src="{{ url_for('static', filename='js/aos.js') }}"></script>
 <script src="{{ url_for('static', filename='js/glightbox.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
 <script src="{{ url_for('static', filename='js/counter.js') }}"></script>
+
+<!-- GSAP 3 + ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
 <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
 {% block extra_scripts %}{% endblock %}
 </body>

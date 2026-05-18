@@ -17,7 +17,7 @@
                     <span class="accent-line">Drav Architecture.</span>
                 </h1>
                 <hr class="hero-rule" data-aos="fade-up" data-aos-delay="160">
-                <p class="text-white mb-0" style="font-size:1rem; opacity:.7; max-width:500px; line-height:1.85;" data-aos="fade-up" data-aos-delay="200">
+                <p class="text-white mb-0" style="font-size:0.95rem; opacity:.6; max-width:500px; line-height:1.85;" data-aos="fade-up" data-aos-delay="200">
                     A multidisciplinary design firm delivering architecture, landscape, and interior solutions across India. We believe good design is purposeful, enduring, and deeply human.
                 </p>
             </div>
@@ -28,17 +28,27 @@
 <!-- ══ PHILOSOPHY ══ -->
 <div class="section">
     <div class="container">
-        <div class="row justify-content-between align-items-center g-5">
+        <div class="row justify-content-between align-items-start g-5">
             <div class="col-lg-5" data-aos="fade-right">
                 <span class="eyebrow">Our Philosophy</span>
                 <h2 class="section-heading mb-4">Design That Serves People &amp; Place.</h2>
-                <p class="mb-4" style="font-size:0.95rem; color:#666; line-height:1.85;">
+                <p class="mb-4">
                     At Drav Architecture, we believe that the built environment profoundly shapes human experience. Our work begins with rigorous site analysis and deep listening to our clients — understanding not just what they want to build, but how they want to live.
                 </p>
-                <p class="mb-5" style="font-size:0.95rem; color:#666; line-height:1.85;">
+                <p class="mb-5">
                     We are committed to contextually sensitive, climatically responsive design that balances innovation with practicality. Whether it's a private residence in Bihar or a large-scale landscape in Prayagraj, we bring the same standards of care and creativity to every project.
                 </p>
-                <div class="row g-3">
+                <!-- Pull-quote -->
+                <blockquote class="pull-quote">
+                    <p>"The best architecture is one that feels inevitable — as though it always belonged there."</p>
+                </blockquote>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <a href="https://www.youtube.com/watch?v=mwtbEGNABWU" class="video-wrap glightbox mb-5 d-block">
+                    <span class="icon-play"></span>
+                    <img src="{{ url_for('static', filename='images/img_7.jpg') }}" alt="Drav Architecture work" class="img-fluid" style="width:100%;display:block;">
+                </a>
+                <div class="row g-3 mt-2">
                     <div class="col-6">
                         <div class="mission-block">
                             <h3>Mission</h3>
@@ -53,12 +63,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6" data-aos="fade-left">
-                <a href="https://www.youtube.com/watch?v=mwtbEGNABWU" class="video-wrap glightbox">
-                    <span class="icon-play"></span>
-                    <img src="{{ url_for('static', filename='images/img_7.jpg') }}" alt="Drav Architecture work" class="img-fluid" style="width:100%;display:block;">
-                </a>
-            </div>
         </div>
     </div>
 </div>
@@ -66,7 +70,7 @@
 <hr class="sec-divider">
 
 <!-- ══ WHY US ══ -->
-<div class="section">
+<div class="section bg-light">
     <div class="container">
         <div class="row mb-5">
             <div class="col-lg-5" data-aos="fade-right">
@@ -136,7 +140,7 @@
 </div>
 
 <!-- ══ PROCESS ══ -->
-<div class="section bg-light">
+<div class="section">
     <div class="container">
         <div class="row mb-5">
             <div class="col-lg-5" data-aos="fade-right">
@@ -144,10 +148,12 @@
                 <h2 class="section-heading">Our Design Process.</h2>
             </div>
             <div class="col-lg-4 ms-auto d-flex align-items-end" data-aos="fade-left">
-                <p style="font-size:0.92rem; color:#888; line-height:1.8;">A structured, collaborative approach from first meeting to final delivery.</p>
+                <p>A structured, collaborative approach from first meeting to final delivery.</p>
             </div>
         </div>
-        <div class="row g-0">
+        <div class="row g-0 process-steps-row">
+            <!-- Animated orange line -->
+            <div class="process-line-draw"></div>
             <div class="col-6 col-md-4 col-lg" data-aos="fade-up" data-aos-delay="0">
                 <div class="process-step">
                     <span class="step-num">01</span>
@@ -188,7 +194,7 @@
 </div>
 
 <!-- ══ TEAM ══ -->
-<div class="section">
+<div class="section bg-light">
     <div class="container">
         <div class="row mb-5">
             <div class="col-lg-5" data-aos="fade-right">
@@ -202,7 +208,7 @@
                     <img src="{{ url_for('static', filename='images/person_1.jpg') }}" alt="Principal Architect" class="img-fluid">
                     <h3>Principal Architect</h3>
                     <span>Founder &amp; Design Lead</span>
-                    <p class="mt-2" style="font-size:0.85rem; color:#888; line-height:1.7;">Leads architectural design and client relationships with over a decade of experience.</p>
+                    <p class="mt-2">Leads architectural design and client relationships with over a decade of experience.</p>
                 </div>
             </div>
             <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="80">
@@ -210,7 +216,7 @@
                     <img src="{{ url_for('static', filename='images/person_2.jpg') }}" alt="Landscape Architect" class="img-fluid">
                     <h3>Landscape Architect</h3>
                     <span>Head of Landscape</span>
-                    <p class="mt-2" style="font-size:0.85rem; color:#888; line-height:1.7;">Specialises in large-scale landscape masterplans for parks, housing communities, and campuses.</p>
+                    <p class="mt-2">Specialises in large-scale landscape masterplans for parks, housing communities, and campuses.</p>
                 </div>
             </div>
             <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="160">
@@ -218,7 +224,7 @@
                     <img src="{{ url_for('static', filename='images/person_3.jpg') }}" alt="Interior Designer" class="img-fluid">
                     <h3>Interior Designer</h3>
                     <span>Head of Interiors</span>
-                    <p class="mt-2" style="font-size:0.85rem; color:#888; line-height:1.7;">Brings spaces to life through material selection, spatial planning, and considered lighting design.</p>
+                    <p class="mt-2">Brings spaces to life through material selection, spatial planning, and considered lighting design.</p>
                 </div>
             </div>
             <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="240">
@@ -226,7 +232,7 @@
                     <img src="{{ url_for('static', filename='images/person_4.jpg') }}" alt="Structural Engineer" class="img-fluid">
                     <h3>Structural Engineer</h3>
                     <span>Engineering Consultant</span>
-                    <p class="mt-2" style="font-size:0.85rem; color:#888; line-height:1.7;">Ensures structural soundness and code compliance, coordinating closely with the design team.</p>
+                    <p class="mt-2">Ensures structural soundness and code compliance, coordinating closely with the design team.</p>
                 </div>
             </div>
         </div>
@@ -238,7 +244,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-7 mb-4 mb-lg-0" data-aos="fade-right">
-                <span class="eyebrow" style="color:rgba(255,255,255,0.3);">Let's Collaborate</span>
+                <span class="eyebrow" style="color:rgba(245,244,240,0.25);">Let's Collaborate</span>
                 <h2>Have a Project in Mind?</h2>
                 <p>We'd love to hear about it. Reach out and let's discuss how we can help.</p>
             </div>
