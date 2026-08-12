@@ -1,0 +1,162 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Site Settings{% endblock %}
+{% block page_title %}Site Settings{% endblock %}
+
+{% block content %}
+
+<form method="POST" action="{{ url_for('admin_bp.settings') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <!-- Contact Info -->
+    <div class="admin-card mb-4">
+        <div class="admin-card-title">Contact Information</div>
+        <div class="grid-2 mb-3">
+            <div>
+                <label class="form-label">Phone Number</label>
+                <input type="text" name="contact_phone" class="form-control" value="{{ settings.get('contact_phone', '') }}" placeholder="+91 XXXXX XXXXX">
+            </div>
+            <div>
+                <label class="form-label">Email Address</label>
+                <input type="email" name="contact_email" class="form-control" value="{{ settings.get('contact_email', '') }}" placeholder="hello@dravarchitecture.com">
+            </div>
+        </div>
+        <div class="grid-2 mb-3">
+            <div>
+                <label class="form-label">WhatsApp Number (digits only, with country code)</label>
+                <input type="text" name="contact_whatsapp" class="form-control" value="{{ settings.get('contact_whatsapp', '') }}" placeholder="918878860664">
+            </div>
+            <div>
+                <label class="form-label">Office / Studio Address</label>
+                <input type="text" name="contact_address" class="form-control" value="{{ settings.get('contact_address', '') }}" placeholder="India — Pan-India Projects">
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Links -->
+    <div class="admin-card mb-4">
+        <div class="admin-card-title">Social Media Links</div>
+        <div class="grid-3 mb-3">
+            <div>
+                <label class="form-label">Instagram URL</label>
+                <input type="text" name="social_instagram" class="form-control" value="{{ settings.get('social_instagram', '') }}" placeholder="https://instagram.com/...">
+            </div>
+            <div>
+                <label class="form-label">LinkedIn URL</label>
+                <input type="text" name="social_linkedin" class="form-control" value="{{ settings.get('social_linkedin', '') }}" placeholder="https://linkedin.com/...">
+            </div>
+            <div>
+                <label class="form-label">Facebook URL</label>
+                <input type="text" name="social_facebook" class="form-control" value="{{ settings.get('social_facebook', '') }}" placeholder="https://facebook.com/...">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="admin-card mb-4">
+        <div class="admin-card-title">Footer Text</div>
+        <div class="mb-3">
+            <label class="form-label">Footer Tagline</label>
+            <textarea name="footer_tagline" class="form-control" rows="3">{{ settings.get('footer_tagline', '') }}</textarea>
+        </div>
+    </div>
+
+    <!-- About Page -->
+    <div class="admin-card mb-4">
+        <div class="admin-card-title">About Page Content</div>
+        <div class="mb-3">
+            <label class="form-label">Section Headline</label>
+            <input type="text" name="about_headline" class="form-control" value="{{ settings.get('about_headline', '') }}" placeholder="Architecture & Landscape, Unified.">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">About Body Text</label>
+            <textarea name="about_body" class="form-control" rows="4">{{ settings.get('about_body', '') }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Philosophy Text</label>
+            <textarea name="philosophy_text" class="form-control" rows="4">{{ settings.get('philosophy_text', '') }}</textarea>
+        </div>
+        <div class="grid-2 mb-3">
+            <div>
+                <label class="form-label">Mission Statement</label>
+                <textarea name="mission_text" class="form-control" rows="3">{{ settings.get('mission_text', '') }}</textarea>
+            </div>
+            <div>
+                <label class="form-label">Vision Statement</label>
+                <textarea name="vision_text" class="form-control" rows="3">{{ settings.get('vision_text', '') }}</textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="admin-card mb-4">
+        <div class="admin-card-title">Statistics (Homepage Counter)</div>
+
+        {% for stat in stats %}
+        <input type="hidden" name="stat_id" value="{{ stat.id }}">
+        <div style="background:var(--da-surface-2); border:1px solid var(--da-border); border-radius:6px; padding:14px; margin-bottom:10px; display:flex; gap:12px; align-items:flex-end;">
+            <div style="flex:2;">
+                <label class="form-label">Label</label>
+                <input type="text" name="stat_label" class="form-control" value="{{ stat.label }}">
+            </div>
+            <div style="flex:1;">
+                <label class="form-label">Value</label>
+                <input type="number" name="stat_value" class="form-control" value="{{ stat.value }}" min="0">
+            </div>
+            <div style="flex:1;">
+                <label class="form-label">Suffix</label>
+                <input type="text" name="stat_suffix" class="form-control" value="{{ stat.suffix }}" placeholder="e.g. +, %">
+            </div>
+            <div>
+                <form method="POST" action="{{ url_for('admin_bp.stat_delete', stat_id=stat.id) }}"
+                      onsubmit="return confirm('Delete this statistic?')">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn-danger-sm">Delete</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--da-border);">
+            <p style="font-size:0.75rem; color:var(--da-text-muted); margin-bottom:10px;">Add new statistic:</p>
+            <div style="display:flex; gap:10px; align-items:flex-end;">
+                <input type="text" name="new_stat_label" class="form-control" placeholder="Label" style="flex:2;" form="stat-add-form">
+                <input type="number" name="new_stat_value" class="form-control" placeholder="Value" style="flex:1;" form="stat-add-form">
+                <input type="text" name="new_stat_suffix" class="form-control" placeholder="Suffix" style="flex:1;" form="stat-add-form">
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex gap-3">
+        <button type="submit" class="btn-da">Save All Settings</button>
+    </div>
+</form>
+
+<!-- Separate form for adding new stat -->
+<form id="stat-add-form" method="POST" action="{{ url_for('admin_bp.stat_new') }}" style="display:none;">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="label" id="new-stat-label">
+    <input type="hidden" name="value" id="new-stat-value">
+    <input type="hidden" name="suffix" id="new-stat-suffix">
+</form>
+
+<div style="margin-top:12px;">
+    <button type="button" class="btn-da-outline" onclick="addStat()">+ Add Statistic</button>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function addStat() {
+    const label = document.querySelector('[name="new_stat_label"]').value.trim();
+    const value = document.querySelector('[name="new_stat_value"]').value.trim();
+    const suffix = document.querySelector('[name="new_stat_suffix"]').value.trim();
+    if (!label || !value) { alert('Label and value are required.'); return; }
+    document.getElementById('new-stat-label').value = label;
+    document.getElementById('new-stat-value').value = value;
+    document.getElementById('new-stat-suffix').value = suffix;
+    document.getElementById('stat-add-form').submit();
+}
+</script>
+{% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}Contact Us{% endblock %}
-{% block meta_description %}Get in touch with Drav Architecture. Call +91 88788 60664 or send a message to discuss your architecture or landscape design project.{% endblock %}
+{% block meta_description %}Get in touch with Drav Architecture. Call or send a message to discuss your architecture or landscape design project.{% endblock %}
 {% block nav_contact %}active{% endblock %}
 
 {% block content %}
@@ -34,11 +34,16 @@
             <span class="eyebrow" style="color:rgba(245,244,240,0.25);">Reach Us</span>
             <h3>Get in Touch</h3>
 
+            {% set phone = settings.get('contact_phone', '+91 88788 60664') %}
+            {% set email = settings.get('contact_email', 'dravarchitecture@outlook.com') %}
+            {% set whatsapp = settings.get('contact_whatsapp', '918878860664') %}
+            {% set address = settings.get('contact_address', 'India — Pan-India Projects') %}
+
             <div class="contact-info-item">
                 <div class="ci-icon"><span class="icon-phone"></span></div>
                 <div class="ci-text">
                     <strong>Phone / WhatsApp</strong>
-                    <a href="tel:+918878860664">+91 88788 60664</a>
+                    <a href="tel:{{ phone }}">{{ phone }}</a>
                 </div>
             </div>
 
@@ -46,7 +51,7 @@
                 <div class="ci-icon"><span class="icon-mail_outline"></span></div>
                 <div class="ci-text">
                     <strong>Email</strong>
-                    <a href="mailto:dravarchitecture@outlook.com">dravarchitecture@outlook.com</a>
+                    <a href="mailto:{{ email }}">{{ email }}</a>
                 </div>
             </div>
 
@@ -54,10 +59,11 @@
                 <div class="ci-icon"><span class="icon-location_on"></span></div>
                 <div class="ci-text">
                     <strong>Studio</strong>
-                    <span>India — Pan-India Projects</span>
+                    <span>{{ address }}</span>
                 </div>
             </div>
 
+            {% if whatsapp %}
             <div class="contact-info-item">
                 <div class="ci-icon" style="background:rgba(37,211,102,0.08); border-color:rgba(37,211,102,0.2);">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#25d366" width="18" height="18">
@@ -66,9 +72,10 @@
                 </div>
                 <div class="ci-text">
                     <strong>WhatsApp</strong>
-                    <a href="https://wa.me/918878860664" target="_blank" rel="noopener">Chat with us directly</a>
+                    <a href="https://wa.me/{{ whatsapp }}" target="_blank" rel="noopener">Chat with us directly</a>
                 </div>
             </div>
+            {% endif %}
 
             <div style="margin-top:36px; padding-top:28px; border-top:1px solid var(--da-border);">
                 <p style="font-size:0.6rem; letter-spacing:0.22em; text-transform:uppercase; color:rgba(245,244,240,0.25); margin-bottom:14px; font-family:'Inter',sans-serif;">Locations We Serve</p>
@@ -89,6 +96,8 @@
         <h2 class="section-heading mb-5">Tell Us About Your Project.</h2>
 
         <form class="row g-4" method="POST" action="{{ url_for('contact') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                     {% for category, message in messages %}

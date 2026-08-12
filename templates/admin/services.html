@@ -1,0 +1,97 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Services{% endblock %}
+{% block page_title %}Services{% endblock %}
+
+{% block content %}
+
+<!-- Add New Service -->
+<div class="admin-card mb-4">
+    <div class="admin-card-title">Add New Service</div>
+    <form method="POST" action="{{ url_for('admin_bp.service_new') }}" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div class="grid-2 mb-3">
+            <div>
+                <label class="form-label">Title *</label>
+                <input type="text" name="title" class="form-control" required placeholder="e.g. Architecture Design">
+            </div>
+            <div>
+                <label class="form-label">Icon Class</label>
+                <input type="text" name="icon_class" class="form-control" placeholder="flaticon-compass" value="flaticon-compass">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea name="description" class="form-control" rows="3" placeholder="Service description..."></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Service Image</label>
+            <input type="file" name="image" class="form-control" accept="image/*">
+        </div>
+        <button type="submit" class="btn-da">Add Service</button>
+    </form>
+</div>
+
+<!-- Existing Services -->
+<div class="admin-card">
+    <div class="admin-card-title">All Services ({{ services|length }})</div>
+
+    {% for svc in services %}
+    <div style="background:var(--da-surface-2); border:1px solid var(--da-border); border-radius:6px; padding:18px; margin-bottom:14px;">
+        <form method="POST" action="{{ url_for('admin_bp.service_edit', service_id=svc.id) }}" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="d-flex justify-between align-items-center mb-3">
+                <strong style="font-size:0.9rem;">Service #{{ loop.index }}</strong>
+                <div class="d-flex gap-2">
+                    <div class="form-check" style="margin:0;">
+                        <input type="checkbox" name="is_active" id="active_{{ svc.id }}" class="form-check-input" {% if svc.is_active %}checked{% endif %}>
+                        <label for="active_{{ svc.id }}" class="form-check-label" style="font-size:0.78rem;">Active</label>
+                    </div>
+                    <button type="submit" class="btn-sm-da">Save</button>
+                    <form method="POST" action="{{ url_for('admin_bp.service_delete', service_id=svc.id) }}"
+                          onsubmit="return confirm('Delete this service?')" style="display:inline;">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <button type="submit" class="btn-danger-sm">Delete</button>
+                    </form>
+                </div>
+            </div>
+            <div class="grid-2 mb-3">
+                <div>
+                    <label class="form-label">Title</label>
+                    <input type="text" name="title" class="form-control" value="{{ svc.title }}" required>
+                </div>
+                <div>
+                    <label class="form-label">Icon Class</label>
+                    <input type="text" name="icon_class" class="form-control" value="{{ svc.icon_class }}">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea name="description" class="form-control" rows="3">{{ svc.description }}</textarea>
+            </div>
+            <div class="grid-2">
+                <div>
+                    <label class="form-label">Current Image</label>
+                    {% if svc.image_filename %}
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <img src="{{ url_for('static', filename=svc.image_filename) }}" class="img-preview" alt="">
+                        <span style="font-size:0.72rem; color:var(--da-text-muted);">{{ svc.image_filename }}</span>
+                    </div>
+                    <input type="hidden" name="image_filename" value="{{ svc.image_filename }}">
+                    {% else %}
+                    <p class="text-muted-da" style="font-size:0.75rem;">No image set</p>
+                    {% endif %}
+                </div>
+                <div>
+                    <label class="form-label">Replace Image</label>
+                    <input type="file" name="image" class="form-control" accept="image/*">
+                </div>
+            </div>
+        </form>
+    </div>
+    {% else %}
+    <p class="text-muted-da">No services yet. Add one above.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

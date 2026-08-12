@@ -1,0 +1,96 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Team{% endblock %}
+{% block page_title %}Team Members{% endblock %}
+
+{% block content %}
+
+<!-- Add Member -->
+<div class="admin-card mb-4">
+    <div class="admin-card-title">Add Team Member</div>
+    <form method="POST" action="{{ url_for('admin_bp.team_new') }}" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div class="grid-2 mb-3">
+            <div>
+                <label class="form-label">Name *</label>
+                <input type="text" name="name" class="form-control" required placeholder="Full name">
+            </div>
+            <div>
+                <label class="form-label">Role / Title</label>
+                <input type="text" name="role" class="form-control" placeholder="e.g. Principal Architect">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Bio</label>
+            <textarea name="bio" class="form-control" rows="3" placeholder="Short bio..."></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Photo</label>
+            <input type="file" name="photo" class="form-control" accept="image/*">
+        </div>
+        <button type="submit" class="btn-da">Add Member</button>
+    </form>
+</div>
+
+<!-- Existing Members -->
+<div class="admin-card">
+    <div class="admin-card-title">Team ({{ members|length }} members)</div>
+
+    {% for member in members %}
+    <div style="background:var(--da-surface-2); border:1px solid var(--da-border); border-radius:6px; padding:18px; margin-bottom:14px; display:flex; gap:16px; align-items:flex-start;">
+        {% if member.photo_filename %}
+        <img src="{{ url_for('static', filename=member.photo_filename) }}" style="width:60px; height:60px; object-fit:cover; border-radius:50%; border:2px solid var(--da-border); flex-shrink:0;" alt="">
+        {% else %}
+        <div style="width:60px; height:60px; border-radius:50%; background:var(--da-surface-3); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:var(--da-text-muted);">👤</div>
+        {% endif %}
+        <div style="flex:1;">
+            <form method="POST" action="{{ url_for('admin_bp.team_edit', member_id=member.id) }}" enctype="multipart/form-data">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="grid-2 mb-3">
+                    <div>
+                        <label class="form-label">Name</label>
+                        <input type="text" name="name" class="form-control" value="{{ member.name }}" required>
+                    </div>
+                    <div>
+                        <label class="form-label">Role</label>
+                        <input type="text" name="role" class="form-control" value="{{ member.role }}">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Bio</label>
+                    <textarea name="bio" class="form-control" rows="2">{{ member.bio }}</textarea>
+                </div>
+                <div class="grid-2 mb-3">
+                    <div>
+                        <label class="form-label">Replace Photo</label>
+                        <input type="file" name="photo" class="form-control" accept="image/*">
+                        {% if member.photo_filename %}
+                        <input type="hidden" name="photo_filename" value="{{ member.photo_filename }}">
+                        {% endif %}
+                    </div>
+                    <div style="display:flex; align-items:flex-end; gap:10px;">
+                        <div class="form-check">
+                            <input type="checkbox" name="is_active" id="act_{{ member.id }}" class="form-check-input" {% if member.is_active %}checked{% endif %}>
+                            <label for="act_{{ member.id }}" class="form-check-label">Active</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn-sm-da">Save Changes</button>
+                </div>
+            </form>
+        </div>
+        <div>
+            <form method="POST" action="{{ url_for('admin_bp.team_delete', member_id=member.id) }}"
+                  onsubmit="return confirm('Delete {{ member.name }}?')">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" class="btn-danger-sm">Delete</button>
+            </form>
+        </div>
+    </div>
+    {% else %}
+    <p class="text-muted-da">No team members yet.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

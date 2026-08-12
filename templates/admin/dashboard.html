@@ -1,0 +1,102 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+
+{% block topbar_actions %}
+    <a href="{{ url_for('admin_bp.project_new') }}" class="btn-da">+ New Project</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="grid-5 mb-5">
+    <div class="stat-card">
+        <div class="stat-val">{{ stats.projects }}</div>
+        <div class="stat-lbl">Projects</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-val">{{ stats.services }}</div>
+        <div class="stat-lbl">Services</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-val">{{ stats.team }}</div>
+        <div class="stat-lbl">Team Members</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-val">{{ stats.testimonials }}</div>
+        <div class="stat-lbl">Testimonials</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-val">{{ stats.media }}</div>
+        <div class="stat-lbl">Media Files</div>
+    </div>
+</div>
+
+<div class="admin-card">
+    <div class="admin-card-title">Recent Projects</div>
+    {% if recent_projects %}
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Location</th>
+                <th>Featured</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in recent_projects %}
+            <tr>
+                <td>
+                    {% if p.cover_image %}
+                        <img src="{{ url_for('static', filename=p.cover_image_url) }}" class="thumb" style="margin-right:10px; vertical-align:middle;" alt="">
+                    {% endif %}
+                    <strong>{{ p.title }}</strong>
+                </td>
+                <td>{{ p.category_display or p.category }}</td>
+                <td>{{ p.location }}</td>
+                <td>
+                    {% if p.is_featured %}
+                        <span class="badge-da badge-featured">Featured</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ url_for('admin_bp.project_edit', project_id=p.id) }}" class="btn-sm-da">Edit</a>
+                    <a href="{{ url_for('project_detail', slug=p.slug) }}" target="_blank" class="btn-da-outline" style="padding:4px 8px; font-size:0.7rem;">View</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="text-muted-da">No projects yet. <a href="{{ url_for('admin_bp.project_new') }}">Create your first project →</a></p>
+    {% endif %}
+
+    <div style="margin-top:16px;">
+        <a href="{{ url_for('admin_bp.projects') }}" class="btn-da-outline">View All Projects</a>
+    </div>
+</div>
+
+<div class="grid-2">
+    <div class="admin-card">
+        <div class="admin-card-title">Quick Links</div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+            <a href="{{ url_for('admin_bp.media') }}" class="btn-da-outline">📁 Media Library</a>
+            <a href="{{ url_for('admin_bp.hero') }}" class="btn-da-outline">🖼 Hero Slides</a>
+            <a href="{{ url_for('admin_bp.settings') }}" class="btn-da-outline">⚙️ Site Settings</a>
+            <a href="{{ url_for('home') }}" target="_blank" class="btn-da-outline">↗ View Website</a>
+        </div>
+    </div>
+    <div class="admin-card">
+        <div class="admin-card-title">Content</div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+            <a href="{{ url_for('admin_bp.services') }}" class="btn-da-outline">🔧 Manage Services</a>
+            <a href="{{ url_for('admin_bp.team') }}" class="btn-da-outline">👥 Manage Team</a>
+            <a href="{{ url_for('admin_bp.testimonials') }}" class="btn-da-outline">💬 Manage Testimonials</a>
+            <a href="{{ url_for('admin_bp.project_new') }}" class="btn-da">+ Add New Project</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

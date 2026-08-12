@@ -1,0 +1,101 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Hero Slides{% endblock %}
+{% block page_title %}Hero Slides{% endblock %}
+
+{% block content %}
+
+<!-- Add Slide -->
+<div class="admin-card mb-4">
+    <div class="admin-card-title">Add Hero Slide</div>
+    <form method="POST" action="{{ url_for('admin_bp.hero_new') }}" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div class="grid-2 mb-3">
+            <div>
+                <label class="form-label">Upload Image *</label>
+                <input type="file" name="image" class="form-control" accept="image/*">
+                <p style="font-size:0.68rem; color:var(--da-text-muted); margin-top:4px;">Recommended: 1920×1080px or larger</p>
+            </div>
+            <div>
+                <label class="form-label">Or enter existing image path</label>
+                <input type="text" name="filename" class="form-control" placeholder="e.g. images/img_2.jpg">
+                <p style="font-size:0.68rem; color:var(--da-text-muted); margin-top:4px;">Path relative to static/</p>
+            </div>
+        </div>
+        <div class="grid-2 mb-3">
+            <div>
+                <label class="form-label">Heading (optional overlay text)</label>
+                <input type="text" name="heading" class="form-control" placeholder="e.g. We Design Spaces That Endure">
+            </div>
+            <div>
+                <label class="form-label">Subheading (optional)</label>
+                <input type="text" name="subheading" class="form-control" placeholder="Short subtitle">
+            </div>
+        </div>
+        <button type="submit" class="btn-da">Add Slide</button>
+    </form>
+</div>
+
+<!-- Existing Slides -->
+<div class="admin-card">
+    <div class="admin-card-title">Current Slides ({{ slides|length }})</div>
+    <p class="text-muted-da" style="font-size:0.78rem; margin-bottom:16px;">Slides are shown in order on the homepage hero section.</p>
+
+    {% for slide in slides %}
+    <div style="background:var(--da-surface-2); border:1px solid var(--da-border); border-radius:6px; margin-bottom:14px; overflow:hidden; display:flex; gap:0;">
+        <div style="width:180px; flex-shrink:0; position:relative;">
+            <img src="{{ url_for('static', filename=slide.filename) }}" style="width:100%; height:100%; min-height:100px; object-fit:cover; display:block;" alt="">
+            <div style="position:absolute; top:6px; left:6px;">
+                {% if slide.is_active %}
+                <span class="badge-da badge-active">Active</span>
+                {% else %}
+                <span class="badge-da badge-inactive">Hidden</span>
+                {% endif %}
+            </div>
+        </div>
+        <div style="flex:1; padding:16px;">
+            <form method="POST" action="{{ url_for('admin_bp.hero_edit', slide_id=slide.id) }}" enctype="multipart/form-data">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="grid-2 mb-3">
+                    <div>
+                        <label class="form-label">Heading</label>
+                        <input type="text" name="heading" class="form-control" value="{{ slide.heading or '' }}">
+                    </div>
+                    <div>
+                        <label class="form-label">Subheading</label>
+                        <input type="text" name="subheading" class="form-control" value="{{ slide.subheading or '' }}">
+                    </div>
+                </div>
+                <div class="grid-2 mb-3">
+                    <div>
+                        <label class="form-label">Replace Image</label>
+                        <input type="file" name="image" class="form-control" accept="image/*">
+                    </div>
+                    <div>
+                        <label class="form-label">Display Order</label>
+                        <input type="number" name="display_order" class="form-control" value="{{ slide.display_order }}" min="0">
+                    </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <div class="form-check">
+                        <input type="checkbox" name="is_active" id="slide_{{ slide.id }}" class="form-check-input" {% if slide.is_active %}checked{% endif %}>
+                        <label for="slide_{{ slide.id }}" class="form-check-label">Active (visible)</label>
+                    </div>
+                    <button type="submit" class="btn-sm-da">Save</button>
+                </div>
+            </form>
+        </div>
+        <div style="padding:16px; display:flex; align-items:center;">
+            <form method="POST" action="{{ url_for('admin_bp.hero_delete', slide_id=slide.id) }}"
+                  onsubmit="return confirm('Delete this hero slide?')">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" class="btn-danger-sm">Delete</button>
+            </form>
+        </div>
+    </div>
+    {% else %}
+    <p class="text-muted-da">No hero slides yet. Add one above.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -10,9 +10,11 @@
 <div class="hero-wrap">
     <!-- Background slider -->
     <div class="hero-bg-slider" id="hero-bg-slider">
+        {% for slide in hero_slides %}
+        <div class="hero-bg-slide" style="background-image: url('{{ url_for('static', filename=slide.filename) }}');"></div>
+        {% else %}
         <div class="hero-bg-slide" style="background-image: url('{{ url_for('static', filename='images/img_2.jpg') }}');"></div>
-        <div class="hero-bg-slide" style="background-image: url('{{ url_for('static', filename='images/img_3.jpg') }}');"></div>
-        <div class="hero-bg-slide" style="background-image: url('{{ url_for('static', filename='images/img_5.jpg') }}');"></div>
+        {% endfor %}
     </div>
     <!-- Dark gradient overlay -->
     <div class="hero-overlay"></div>
@@ -50,30 +52,19 @@
 <div class="stats-bar">
     <div class="container">
         <div class="row g-0">
+            {% for stat in stats %}
             <div class="col-6 col-md-3">
                 <div class="stat-item">
-                    <span class="stat-number" data-count="10">0</span>
-                    <span class="stat-label">Years of Experience</span>
+                    <span class="stat-number" data-count="{{ stat.value }}">0</span>
+                    <span class="stat-label">{{ stat.label }}</span>
                 </div>
             </div>
-            <div class="col-6 col-md-3">
-                <div class="stat-item">
-                    <span class="stat-number" data-count="50">0</span>
-                    <span class="stat-label">Projects Completed</span>
-                </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="stat-item">
-                    <span class="stat-number" data-count="8">0</span>
-                    <span class="stat-label">States Served</span>
-                </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="stat-item">
-                    <span class="stat-number" data-count="100">0</span>
-                    <span class="stat-label">% Client Satisfaction</span>
-                </div>
-            </div>
+            {% else %}
+            <div class="col-6 col-md-3"><div class="stat-item"><span class="stat-number" data-count="10">0</span><span class="stat-label">Years of Experience</span></div></div>
+            <div class="col-6 col-md-3"><div class="stat-item"><span class="stat-number" data-count="50">0</span><span class="stat-label">Projects Completed</span></div></div>
+            <div class="col-6 col-md-3"><div class="stat-item"><span class="stat-number" data-count="8">0</span><span class="stat-label">States Served</span></div></div>
+            <div class="col-6 col-md-3"><div class="stat-item"><span class="stat-number" data-count="100">0</span><span class="stat-label">% Client Satisfaction</span></div></div>
+            {% endfor %}
         </div>
     </div>
 </div>
@@ -84,10 +75,8 @@
         <div class="row g-0 align-items-center">
             <div class="col-lg-4 pe-lg-5" data-aos="fade-right">
                 <span class="eyebrow">Who We Are</span>
-                <h2 class="section-heading mb-4">Architecture &amp; Landscape, Unified.</h2>
-                <p class="mb-4">
-                    Drav Architecture is a multidisciplinary design studio rooted in the belief that great design improves lives. We bring together architecture, landscape, and interior expertise to create spaces that are both beautiful and deeply functional.
-                </p>
+                <h2 class="section-heading mb-4">{{ settings.get('about_headline', 'Architecture &amp; Landscape, Unified.') }}</h2>
+                <p class="mb-4">{{ settings.get('about_body', 'Drav Architecture is a multidisciplinary design studio rooted in the belief that great design improves lives.') }}</p>
                 <p class="mb-5">
                     With projects spanning urban housing, institutional campuses, commercial buildings, and private residences, we approach every brief with fresh eyes and rigorous craft.
                 </p>
@@ -142,90 +131,34 @@
         <div class="row g-0" data-aos="fade-up">
             <div class="col-12">
                 <div class="accordion accordion-flush accordion-1" id="accordionServices">
+                    {% for svc in services %}
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="svc-h1">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#svc-c1" aria-expanded="true" aria-controls="svc-c1">
-                                01 &nbsp;&nbsp; Architecture Design
+                        <h2 class="accordion-header" id="svc-h{{ loop.index }}">
+                            <button class="accordion-button {% if not loop.first %}collapsed{% endif %}" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#svc-c{{ loop.index }}"
+                                    aria-expanded="{{ 'true' if loop.first else 'false' }}"
+                                    aria-controls="svc-c{{ loop.index }}">
+                                0{{ loop.index }} &nbsp;&nbsp; {{ svc.title }}
                             </button>
                         </h2>
-                        <div id="svc-c1" class="accordion-collapse collapse show" aria-labelledby="svc-h1" data-bs-parent="#accordionServices">
+                        <div id="svc-c{{ loop.index }}" class="accordion-collapse collapse {% if loop.first %}show{% endif %}"
+                             aria-labelledby="svc-h{{ loop.index }}" data-bs-parent="#accordionServices">
                             <div class="accordion-body">
                                 <div class="row align-items-center g-4">
+                                    {% if svc.image_filename %}
                                     <div class="col-md-3">
-                                        <img src="{{ url_for('static', filename='images/img_7.jpg') }}" alt="Architecture Design" class="img-fluid" style="width:100%; aspect-ratio:1; object-fit:cover;">
+                                        <img src="{{ url_for('static', filename=svc.image_filename) }}" alt="{{ svc.title }}" class="img-fluid" style="width:100%; aspect-ratio:1; object-fit:cover;">
                                     </div>
-                                    <div class="col-md-8">
-                                        <p class="mb-4">We design residential, commercial, and institutional buildings with a focus on functional efficiency, structural integrity, and aesthetic excellence — tailored to each site and client.</p>
+                                    {% endif %}
+                                    <div class="col-md-{% if svc.image_filename %}8{% else %}12{% endif %}">
+                                        <p class="mb-4">{{ svc.description }}</p>
                                         <a href="{{ url_for('services') }}" class="more-2">Learn more <span class="icon-arrow_forward"></span></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="svc-h2">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#svc-c2" aria-expanded="false" aria-controls="svc-c2">
-                                02 &nbsp;&nbsp; Landscape Design
-                            </button>
-                        </h2>
-                        <div id="svc-c2" class="accordion-collapse collapse" aria-labelledby="svc-h2" data-bs-parent="#accordionServices">
-                            <div class="accordion-body">
-                                <div class="row align-items-center g-4">
-                                    <div class="col-md-3">
-                                        <img src="{{ url_for('static', filename='images/img_2.jpg') }}" alt="Landscape Design" class="img-fluid" style="width:100%; aspect-ratio:1; object-fit:cover;">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <p class="mb-4">From urban parks and housing communities to institutional campuses, we create landscape masterplans that integrate ecology, recreation, and visual delight.</p>
-                                        <a href="{{ url_for('services') }}" class="more-2">Learn more <span class="icon-arrow_forward"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="svc-h3">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#svc-c3" aria-expanded="false" aria-controls="svc-c3">
-                                03 &nbsp;&nbsp; Interior Design
-                            </button>
-                        </h2>
-                        <div id="svc-c3" class="accordion-collapse collapse" aria-labelledby="svc-h3" data-bs-parent="#accordionServices">
-                            <div class="accordion-body">
-                                <div class="row align-items-center g-4">
-                                    <div class="col-md-3">
-                                        <img src="{{ url_for('static', filename='images/img_3.jpg') }}" alt="Interior Design" class="img-fluid" style="width:100%; aspect-ratio:1; object-fit:cover;">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <p class="mb-4">We design interiors that reflect the personality of their occupants — balancing form, function, material quality, and light to create spaces that are comfortable and inspiring.</p>
-                                        <a href="{{ url_for('services') }}" class="more-2">Learn more <span class="icon-arrow_forward"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="svc-h4">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#svc-c4" aria-expanded="false" aria-controls="svc-c4">
-                                04 &nbsp;&nbsp; Engineering &amp; Floor Plans
-                            </button>
-                        </h2>
-                        <div id="svc-c4" class="accordion-collapse collapse" aria-labelledby="svc-h4" data-bs-parent="#accordionServices">
-                            <div class="accordion-body">
-                                <div class="row align-items-center g-4">
-                                    <div class="col-md-3">
-                                        <img src="{{ url_for('static', filename='images/img_4.jpg') }}" alt="Engineering Plans" class="img-fluid" style="width:100%; aspect-ratio:1; object-fit:cover;">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <p class="mb-4">We produce detailed engineering drawings, site plans, and floor plans that translate design concepts into precise construction documentation — clear, coordinated, and buildable.</p>
-                                        <a href="{{ url_for('services') }}" class="more-2">Learn more <span class="icon-arrow_forward"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -290,78 +223,20 @@
             </div>
         </div>
         <div class="row g-1" id="projects-home-grid">
+            {% for p in featured_projects %}
             <div class="col-sm-6 col-lg-4">
                 <div class="single-portfolio">
-                    <a href="{{ url_for('project_single') }}">
-                        <img src="{{ url_for('static', filename='images/img_8.jpg') }}" alt="Urban Woods Lucknow">
+                    <a href="{{ url_for('project_detail', slug=p.slug) }}">
+                        <img src="{{ url_for('static', filename=p.cover_image_url) }}" alt="{{ p.title }}">
                         <div class="contents">
-                            <div class="cat">Landscape Design</div>
-                            <h3>Urban Woods</h3>
-                            <div class="proj-location">Lucknow, UP</div>
+                            <div class="cat">{{ p.category_display or p.category }}</div>
+                            <h3>{{ p.title }}</h3>
+                            <div class="proj-location">{{ p.location }}</div>
                         </div>
                     </a>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-4">
-                <div class="single-portfolio">
-                    <a href="{{ url_for('project_single') }}">
-                        <img src="{{ url_for('static', filename='images/img_2.jpg') }}" alt="Amrapali Leisure Park">
-                        <div class="contents">
-                            <div class="cat">Landscape Design</div>
-                            <h3>Amrapali Leisure Park</h3>
-                            <div class="proj-location">Prayagraj, UP</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-                <div class="single-portfolio">
-                    <a href="{{ url_for('project_single') }}">
-                        <img src="{{ url_for('static', filename='images/img_4.jpg') }}" alt="Amrapali Golf Homes">
-                        <div class="contents">
-                            <div class="cat">Landscape Design</div>
-                            <h3>Amrapali Golf Homes</h3>
-                            <div class="proj-location">Ayodhya, UP</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-                <div class="single-portfolio">
-                    <a href="{{ url_for('project_single') }}">
-                        <img src="{{ url_for('static', filename='images/img_5.jpg') }}" alt="Munirika Residence">
-                        <div class="contents">
-                            <div class="cat">Residential Architecture</div>
-                            <h3>Munirika Residence</h3>
-                            <div class="proj-location">Darbhanga, Bihar</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-                <div class="single-portfolio">
-                    <a href="{{ url_for('project_single') }}">
-                        <img src="{{ url_for('static', filename='images/img_6.jpg') }}" alt="Amaravati Midtown Housing">
-                        <div class="contents">
-                            <div class="cat">Landscape Design</div>
-                            <h3>Amaravati Midtown</h3>
-                            <div class="proj-location">Lucknow, UP</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-                <div class="single-portfolio">
-                    <a href="{{ url_for('project_single') }}">
-                        <img src="{{ url_for('static', filename='images/img_7.jpg') }}" alt="SDRF Campus Ayodhya">
-                        <div class="contents">
-                            <div class="cat">Institutional</div>
-                            <h3>SDRF Campus</h3>
-                            <div class="proj-location">Ayodhya, UP</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            {% endfor %}
         </div>
         <div class="text-center mt-5" data-aos="fade-up">
             <a href="{{ url_for('projects') }}" class="btn btn-outline-dark me-3">View All Projects</a>

@@ -41,120 +41,28 @@
         <!-- Filter Buttons -->
         <div class="project-filters" data-aos="fade-up">
             <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="landscape">Landscape Design</button>
-            <button class="filter-btn" data-filter="architecture">Architecture</button>
-            <button class="filter-btn" data-filter="institutional">Institutional</button>
+            {% for cat_key, cat_display in categories %}
+            <button class="filter-btn" data-filter="{{ cat_key }}">{{ cat_display }}</button>
+            {% endfor %}
         </div>
 
         <div class="row g-1" id="projects-grid">
-            <div class="col-sm-6 col-lg-4" data-category="landscape">
+            {% for p in projects %}
+            <div class="col-sm-6 col-lg-4" data-category="{{ p.category }}">
                 <div class="single-portfolio">
-                    <a href="{{ url_for('project_single') }}">
-                        <img src="{{ url_for('static', filename='images/img_8.jpg') }}" alt="Urban Woods Lucknow">
+                    <a href="{{ url_for('project_detail', slug=p.slug) }}">
+                        <img src="{{ url_for('static', filename=p.cover_image_url) }}" alt="{{ p.title }}">
                         <div class="contents">
-                            <div class="cat">Landscape Design</div>
-                            <h3>Urban Woods</h3>
-                            <div class="proj-location">Lucknow, Uttar Pradesh</div>
+                            <div class="cat">{{ p.category_display or p.category }}</div>
+                            <h3>{{ p.title }}</h3>
+                            <div class="proj-location">{{ p.location }}</div>
                         </div>
                     </a>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-4" data-category="landscape">
-                <div class="single-portfolio">
-                    <a href="{{ url_for('project_single') }}">
-                        <img src="{{ url_for('static', filename='images/img_2.jpg') }}" alt="Amaravati Midtown Housing">
-                        <div class="contents">
-                            <div class="cat">Landscape Design</div>
-                            <h3>Amaravati Midtown Housing</h3>
-                            <div class="proj-location">Lucknow, Uttar Pradesh</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4" data-category="landscape">
-                <div class="single-portfolio">
-                    <a href="{{ url_for('project_single') }}">
-                        <img src="{{ url_for('static', filename='images/img_3.jpg') }}" alt="Amrapali Leisure Park">
-                        <div class="contents">
-                            <div class="cat">Landscape Design</div>
-                            <h3>Amrapali Leisure Park</h3>
-                            <div class="proj-location">Prayagraj, UP</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4" data-category="landscape">
-                <div class="single-portfolio">
-                    <a href="{{ url_for('project_single') }}">
-                        <img src="{{ url_for('static', filename='images/img_4.jpg') }}" alt="Amrapali Golf Homes">
-                        <div class="contents">
-                            <div class="cat">Landscape Design</div>
-                            <h3>Amrapali Golf Homes &amp; Kingswood</h3>
-                            <div class="proj-location">Prayagraj, UP</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4" data-category="landscape">
-                <div class="single-portfolio">
-                    <a href="{{ url_for('project_single') }}">
-                        <img src="{{ url_for('static', filename='images/img_5.jpg') }}" alt="Amrapali Centurian Park">
-                        <div class="contents">
-                            <div class="cat">Landscape Design</div>
-                            <h3>Amrapali Centurian Park</h3>
-                            <div class="proj-location">Ayodhya, UP</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4" data-category="institutional">
-                <div class="single-portfolio">
-                    <a href="{{ url_for('project_single') }}">
-                        <img src="{{ url_for('static', filename='images/img_6.jpg') }}" alt="SDRF Campus Ayodhya">
-                        <div class="contents">
-                            <div class="cat">Institutional</div>
-                            <h3>SDRF Campus Landscape</h3>
-                            <div class="proj-location">Ayodhya, UP</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4" data-category="architecture">
-                <div class="single-portfolio">
-                    <a href="{{ url_for('project_single') }}">
-                        <img src="{{ url_for('static', filename='images/img_7.jpg') }}" alt="Munirika Residence Darbhanga">
-                        <div class="contents">
-                            <div class="cat">Residential Architecture</div>
-                            <h3>Munirika Residence</h3>
-                            <div class="proj-location">Darbhanga, Bihar</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4" data-category="architecture">
-                <div class="single-portfolio">
-                    <a href="{{ url_for('project_single') }}">
-                        <img src="{{ url_for('static', filename='images/img_8.jpg') }}" alt="Star Flour Mill Pandaul">
-                        <div class="contents">
-                            <div class="cat">Commercial Architecture</div>
-                            <h3>Star Flour Mill</h3>
-                            <div class="proj-location">Pandaul, Bihar</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4" data-category="landscape">
-                <div class="single-portfolio">
-                    <a href="{{ url_for('project_single') }}">
-                        <img src="{{ url_for('static', filename='images/img_2.jpg') }}" alt="Farm House Landscape Lucknow">
-                        <div class="contents">
-                            <div class="cat">Landscape Design</div>
-                            <h3>Farm House Landscape</h3>
-                            <div class="proj-location">Lucknow, UP</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            {% else %}
+            <div class="col-12"><p style="color:var(--da-text-muted);">No projects found.</p></div>
+            {% endfor %}
         </div>
     </div>
 </div>

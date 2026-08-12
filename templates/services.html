@@ -38,95 +38,23 @@
             </div>
         </div>
 
-        <!-- Row 01: Image left, text right -->
+        {% for svc in services %}
         <div class="service-row" data-aos="fade-up">
-            <div class="row align-items-center g-5">
+            <div class="row align-items-center g-5 {% if loop.index % 2 == 0 %}flex-row-reverse{% endif %}">
+                {% if svc.image_filename %}
                 <div class="col-lg-5">
-                    <img src="{{ url_for('static', filename='images/img_7.jpg') }}" alt="Architecture Design">
+                    <img src="{{ url_for('static', filename=svc.image_filename) }}" alt="{{ svc.title }}">
                 </div>
-                <div class="col-lg-6 ms-auto">
-                    <span class="svc-number">01</span>
-                    <h3 class="svc-title">Architecture Design</h3>
-                    <p class="svc-desc">We design buildings that respond to their site, purpose, and users — from initial concept through to detailed construction documentation. Residential, commercial, and institutional projects across India.</p>
+                {% endif %}
+                <div class="col-lg-{% if svc.image_filename %}6{% else %}10{% endif %} {% if svc.image_filename and loop.index % 2 != 0 %}ms-auto{% endif %}">
+                    <span class="svc-number">0{{ loop.index }}</span>
+                    <h3 class="svc-title">{{ svc.title }}</h3>
+                    <p class="svc-desc">{{ svc.description }}</p>
                     <a href="{{ url_for('contact') }}" class="more-2">Start a project <span class="icon-arrow_forward"></span></a>
                 </div>
             </div>
         </div>
-
-        <!-- Row 02: Text left, image right -->
-        <div class="service-row" data-aos="fade-up">
-            <div class="row align-items-center g-5 flex-row-reverse">
-                <div class="col-lg-5">
-                    <img src="{{ url_for('static', filename='images/img_2.jpg') }}" alt="Landscape Design">
-                </div>
-                <div class="col-lg-6">
-                    <span class="svc-number">02</span>
-                    <h3 class="svc-title">Landscape Design</h3>
-                    <p class="svc-desc">Our landscape practice creates outdoor environments that enhance community life and ecological resilience. Parks, gardens, recreational amenities, and green infrastructure for large housing developments and urban settings.</p>
-                    <a href="{{ url_for('contact') }}" class="more-2">Start a project <span class="icon-arrow_forward"></span></a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Row 03: Image left, text right -->
-        <div class="service-row" data-aos="fade-up">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-5">
-                    <img src="{{ url_for('static', filename='images/img_3.jpg') }}" alt="Interior Design">
-                </div>
-                <div class="col-lg-6 ms-auto">
-                    <span class="svc-number">03</span>
-                    <h3 class="svc-title">Interior Design</h3>
-                    <p class="svc-desc">Interiors that balance comfort, functionality, and aesthetic character. From space planning and furniture layouts to material palettes and lighting — our interiors reflect the identity of the people who inhabit them.</p>
-                    <a href="{{ url_for('contact') }}" class="more-2">Start a project <span class="icon-arrow_forward"></span></a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Row 04: Text left, image right -->
-        <div class="service-row" data-aos="fade-up">
-            <div class="row align-items-center g-5 flex-row-reverse">
-                <div class="col-lg-5">
-                    <img src="{{ url_for('static', filename='images/img_4.jpg') }}" alt="Engineering Plans">
-                </div>
-                <div class="col-lg-6">
-                    <span class="svc-number">04</span>
-                    <h3 class="svc-title">Engineering &amp; Structural Plans</h3>
-                    <p class="svc-desc">Precise engineering drawings and structural plans that coordinate all disciplines — civil, structural, and MEP — ensuring designs are fully buildable, code-compliant, and efficiently executed on site.</p>
-                    <a href="{{ url_for('contact') }}" class="more-2">Start a project <span class="icon-arrow_forward"></span></a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Row 05: Image left, text right -->
-        <div class="service-row" data-aos="fade-up">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-5">
-                    <img src="{{ url_for('static', filename='images/img_5.jpg') }}" alt="3D Visualization">
-                </div>
-                <div class="col-lg-6 ms-auto">
-                    <span class="svc-number">05</span>
-                    <h3 class="svc-title">3D Visualization &amp; Rendering</h3>
-                    <p class="svc-desc">Photorealistic 3D renderings and walkthrough animations that allow clients to experience their project before construction begins — enabling informed decisions and confident approvals at every design stage.</p>
-                    <a href="{{ url_for('contact') }}" class="more-2">Start a project <span class="icon-arrow_forward"></span></a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Row 06: Text left, image right -->
-        <div class="service-row" data-aos="fade-up">
-            <div class="row align-items-center g-5 flex-row-reverse">
-                <div class="col-lg-5">
-                    <img src="{{ url_for('static', filename='images/img_6.jpg') }}" alt="Floor Plans">
-                </div>
-                <div class="col-lg-6">
-                    <span class="svc-number">06</span>
-                    <h3 class="svc-title">Floor Plans &amp; Site Layouts</h3>
-                    <p class="svc-desc">Clear, dimensioned floor plans and site layout drawings that communicate design intent effectively to clients, contractors, and statutory bodies — the foundation of every successful project.</p>
-                    <a href="{{ url_for('contact') }}" class="more-2">Start a project <span class="icon-arrow_forward"></span></a>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
 
     </div>
 </div>
@@ -143,45 +71,26 @@
         <div class="row g-0 process-steps-row">
             <div class="process-line-draw"></div>
             <div class="col-6 col-md-4 col-lg" data-aos="fade-up" data-aos-delay="0">
-                <div class="process-step">
-                    <span class="step-num">01</span>
-                    <h5>Discovery</h5>
-                    <p>Site visit, brief review, and client consultation.</p>
-                </div>
+                <div class="process-step"><span class="step-num">01</span><h5>Discovery</h5><p>Site visit, brief review, and client consultation.</p></div>
             </div>
             <div class="col-6 col-md-4 col-lg" data-aos="fade-up" data-aos-delay="80">
-                <div class="process-step">
-                    <span class="step-num">02</span>
-                    <h5>Concept</h5>
-                    <p>Design exploration through sketches and 3D models.</p>
-                </div>
+                <div class="process-step"><span class="step-num">02</span><h5>Concept</h5><p>Design exploration through sketches and 3D models.</p></div>
             </div>
             <div class="col-6 col-md-4 col-lg" data-aos="fade-up" data-aos-delay="160">
-                <div class="process-step">
-                    <span class="step-num">03</span>
-                    <h5>Development</h5>
-                    <p>Refining the concept into a complete, coordinated design.</p>
-                </div>
+                <div class="process-step"><span class="step-num">03</span><h5>Development</h5><p>Refining the concept into a complete, coordinated design.</p></div>
             </div>
             <div class="col-6 col-md-4 col-lg" data-aos="fade-up" data-aos-delay="240">
-                <div class="process-step">
-                    <span class="step-num">04</span>
-                    <h5>Documentation</h5>
-                    <p>Engineering drawings, specifications, and approvals.</p>
-                </div>
+                <div class="process-step"><span class="step-num">04</span><h5>Documentation</h5><p>Engineering drawings, specifications, and approvals.</p></div>
             </div>
             <div class="col-6 col-md-4 col-lg" data-aos="fade-up" data-aos-delay="320">
-                <div class="process-step">
-                    <span class="step-num">05</span>
-                    <h5>Delivery</h5>
-                    <p>Site supervision and final project handover.</p>
-                </div>
+                <div class="process-step"><span class="step-num">05</span><h5>Delivery</h5><p>Site supervision and final project handover.</p></div>
             </div>
         </div>
     </div>
 </div>
 
 <!-- ══ TESTIMONIALS ══ -->
+{% if testimonials %}
 <div class="section">
     <div class="container mb-5">
         <div class="row">
@@ -197,45 +106,24 @@
             <span data-controls="next"><span class="icon-chevron-right"></span></span>
         </div>
         <div class="testimonial-slide-center testimonial-center" id="testimonial-center">
+            {% for t in testimonials %}
             <div class="item">
                 <div class="testimonial-item">
                     <div class="testimonial-item-inner">
                         <div class="testimonial-author mb-4">
-                            <div class="avatar-ring"><span class="avatar-initials">SM</span></div>
-                            <strong class="d-block mt-2">Mr. Sunil Munirika</strong>
-                            <span>Residential Client, Darbhanga</span>
+                            <div class="avatar-ring"><span class="avatar-initials">{{ t.initials or t.client_name[:2].upper() }}</span></div>
+                            <strong class="d-block mt-2">{{ t.client_name }}</strong>
+                            <span>{{ t.company }}</span>
                         </div>
-                        <blockquote>The team at Drav Architecture understood exactly what we wanted for our home. They were attentive, professional, and delivered a design that exceeded our expectations. The attention to detail in both the exterior elevations and the interior layouts was outstanding.</blockquote>
+                        <blockquote>{{ t.text }}</blockquote>
                     </div>
                 </div>
             </div>
-            <div class="item">
-                <div class="testimonial-item">
-                    <div class="testimonial-item-inner">
-                        <div class="testimonial-author mb-4">
-                            <div class="avatar-ring"><span class="avatar-initials">AM</span></div>
-                            <strong class="d-block mt-2">Project Manager</strong>
-                            <span>Amrapali Group, Prayagraj</span>
-                        </div>
-                        <blockquote>Drav Architecture's landscape designs for our housing communities have been received extremely well by residents. Their ability to integrate recreational amenities, greenery, and pedestrian-friendly pathways into tight urban sites is impressive.</blockquote>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="testimonial-item">
-                    <div class="testimonial-item-inner">
-                        <div class="testimonial-author mb-4">
-                            <div class="avatar-ring"><span class="avatar-initials">SD</span></div>
-                            <strong class="d-block mt-2">Site Director</strong>
-                            <span>SDRF Campus, Ayodhya</span>
-                        </div>
-                        <blockquote>The landscape masterplan for our campus struck the right balance between functional infrastructure and natural greenery. The Miyawaki forest and reflexology paths are particularly appreciated. Great work by the Drav team.</blockquote>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
+{% endif %}
 
 <!-- ══ CTA ══ -->
 <div class="cta-banner">

@@ -1,25 +1,32 @@
 {% extends 'base.html' %}
 
-{% block title %}Munirika Residence — Drav Architecture{% endblock %}
-{% block meta_description %}Detailed view of the Munirika Residence project by Drav Architecture — a luxury residential design in Prayagraj.{% endblock %}
+{% block title %}{{ project.title }} — Drav Architecture{% endblock %}
+{% block meta_description %}{{ project.description[:155] if project.description else project.title + ' — a project by Drav Architecture.' }}{% endblock %}
 {% block nav_projects %}active{% endblock %}
 
 {% block content %}
 
 <!-- ══ HERO ══ -->
-<div class="hero-2 hero-inner overlay" style="background-image: url('{{ url_for("static", filename="images/img_3.jpg") }}');">
+<div class="hero-2 hero-inner overlay" style="background-image: url('{{ url_for('static', filename=project.cover_image_url) }}');">
     <div class="container">
         <div class="row">
             <div class="col-lg-7">
-                <span class="eyebrow light" data-aos="fade-up">Residential Architecture</span>
+                <span class="eyebrow light" data-aos="fade-up">{{ project.category_display or project.category }}</span>
                 <h1 class="display-heading" data-aos="fade-up" data-aos-delay="80">
-                    <span>Munirika</span>
-                    <span class="accent-line">Residence.</span>
+                    {% set words = project.title.split() %}
+                    {% if words|length > 1 %}
+                    <span>{{ words[:-1]|join(' ') }}</span>
+                    <span class="accent-line">{{ words[-1] }}.</span>
+                    {% else %}
+                    <span class="accent-line">{{ project.title }}.</span>
+                    {% endif %}
                 </h1>
                 <hr class="hero-rule" data-aos="fade-up" data-aos-delay="160">
+                {% if project.description %}
                 <p class="text-white mb-0" style="font-size:0.95rem; opacity:.6; max-width:500px; line-height:1.85;" data-aos="fade-up" data-aos-delay="200">
-                    A sophisticated residential project in Prayagraj, blending contemporary architecture with functional landscape design to create a premium living environment.
+                    {{ project.description[:200] }}
                 </p>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -29,22 +36,44 @@
 <div class="section sec-sm" style="background: var(--da-surface); border-bottom: 1px solid var(--da-border);">
     <div class="container">
         <div class="row g-4" data-aos="fade-up">
+            {% if project.location %}
             <div class="col-sm-6 col-md-3">
                 <span class="eyebrow mb-1">Location</span>
-                <strong class="d-block" style="font-size:0.95rem; color:var(--da-text);">Prayagraj, UP</strong>
+                <strong class="d-block" style="font-size:0.95rem; color:var(--da-text);">{{ project.location }}</strong>
             </div>
+            {% endif %}
             <div class="col-sm-6 col-md-3">
                 <span class="eyebrow mb-1">Category</span>
-                <strong class="d-block" style="font-size:0.95rem; color:var(--da-text);">Residential Architecture</strong>
+                <strong class="d-block" style="font-size:0.95rem; color:var(--da-text);">{{ project.category_display or project.category }}</strong>
             </div>
+            {% if project.services_provided %}
             <div class="col-sm-6 col-md-3">
                 <span class="eyebrow mb-1">Services</span>
-                <strong class="d-block" style="font-size:0.95rem; color:var(--da-text);">Architecture + Landscape</strong>
+                <strong class="d-block" style="font-size:0.95rem; color:var(--da-text);">{{ project.services_provided }}</strong>
             </div>
+            {% endif %}
             <div class="col-sm-6 col-md-3">
                 <span class="eyebrow mb-1">Status</span>
-                <strong class="d-block" style="font-size:0.95rem; color:var(--da-orange);">Completed</strong>
+                <strong class="d-block" style="font-size:0.95rem; color:var(--da-orange);">{{ project.status }}</strong>
             </div>
+            {% if project.client %}
+            <div class="col-sm-6 col-md-3">
+                <span class="eyebrow mb-1">Client</span>
+                <strong class="d-block" style="font-size:0.95rem; color:var(--da-text);">{{ project.client }}</strong>
+            </div>
+            {% endif %}
+            {% if project.year %}
+            <div class="col-sm-6 col-md-3">
+                <span class="eyebrow mb-1">Year</span>
+                <strong class="d-block" style="font-size:0.95rem; color:var(--da-text);">{{ project.year }}</strong>
+            </div>
+            {% endif %}
+            {% if project.area_sqft %}
+            <div class="col-sm-6 col-md-3">
+                <span class="eyebrow mb-1">Area</span>
+                <strong class="d-block" style="font-size:0.95rem; color:var(--da-text);">{{ project.area_sqft }}</strong>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
@@ -54,31 +83,74 @@
     <div class="container">
         <div class="row mb-5 justify-content-between align-items-center g-5">
             <div class="col-lg-6" data-aos="fade-right">
-                <img src="{{ url_for('static', filename='images/img_7.jpg') }}" alt="Munirika Residence" class="img-fluid" style="width:100%; display:block;">
+                <img src="{{ url_for('static', filename=project.cover_image_url) }}" alt="{{ project.title }}" class="img-fluid" style="width:100%; display:block;">
             </div>
             <div class="col-lg-5" data-aos="fade-left">
                 <span class="eyebrow">Project Overview</span>
-                <h2 class="section-heading mb-4">A Residence Built Around Living</h2>
-                <p class="mb-4">The Munirika Residence is a landmark residential project demonstrating Drav Architecture's expertise in blending modern design sensibilities with practical living requirements. The project encompasses architectural planning, landscape design, and interior coordination.</p>
-                <p class="mb-4">Our team worked closely with the client to deliver a design that maximises natural light, integrates green spaces, and maintains a seamless flow between indoor and outdoor environments — hallmarks of the Drav Architecture approach.</p>
-                <p class="mb-5">The residence features carefully considered spatial planning, premium material selection, and detailed landscape integration including native plantings and a functional outdoor entertaining area.</p>
+                <h2 class="section-heading mb-4">{{ project.title }}</h2>
+                {% if project.description %}
+                <p class="mb-5">{{ project.description }}</p>
+                {% endif %}
                 <a href="{{ url_for('contact') }}" class="btn btn-primary">Enquire About This Project</a>
             </div>
         </div>
 
-        <!-- Second image row -->
+        <!-- Gallery images -->
+        {% if project.images %}
+        <div class="row g-1 mt-2" data-aos="fade-up">
+            {% for img in project.images[:3] %}
+            {% if loop.first %}
+            <div class="col-md-8">
+                <img src="{{ url_for('static', filename=img.filename) }}" alt="{{ img.caption or project.title }}" class="img-fluid" style="width:100%; height:420px; object-fit:cover; display:block;">
+            </div>
+            {% else %}
+            <div class="col-md-{% if loop.length == 3 %}2{% else %}4{% endif %}">
+                <img src="{{ url_for('static', filename=img.filename) }}" alt="{{ img.caption or project.title }}" class="img-fluid" style="width:100%; height:420px; object-fit:cover; display:block;">
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        {% if project.images|length > 3 %}
+        <div class="row g-1 mt-1" data-aos="fade-up">
+            {% for img in project.images[3:] %}
+            <div class="col-md-4">
+                <img src="{{ url_for('static', filename=img.filename) }}" alt="{{ img.caption or project.title }}" class="img-fluid" style="width:100%; height:280px; object-fit:cover; display:block;">
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% else %}
         <div class="row g-1 mt-2" data-aos="fade-up">
             <div class="col-md-8">
-                <img src="{{ url_for('static', filename='images/img_5.jpg') }}" alt="Munirika Residence exterior" class="img-fluid" style="width:100%; height:420px; object-fit:cover; display:block;">
+                <img src="{{ url_for('static', filename='images/img_5.jpg') }}" alt="{{ project.title }}" class="img-fluid" style="width:100%; height:420px; object-fit:cover; display:block;">
             </div>
             <div class="col-md-4">
-                <img src="{{ url_for('static', filename='images/img_6.jpg') }}" alt="Munirika Residence detail" class="img-fluid" style="width:100%; height:420px; object-fit:cover; display:block;">
+                <img src="{{ url_for('static', filename='images/img_6.jpg') }}" alt="{{ project.title }}" class="img-fluid" style="width:100%; height:420px; object-fit:cover; display:block;">
             </div>
         </div>
+        {% endif %}
+
+        <!-- PDF Downloads -->
+        {% if project.pdfs %}
+        <div class="mt-5" data-aos="fade-up">
+            <h4 style="font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--da-text-muted); margin-bottom:14px;">Project Documents</h4>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                {% for pdf in project.pdfs %}
+                <a href="{{ url_for('static', filename=pdf.filename) }}" target="_blank"
+                   style="display:inline-flex; align-items:center; gap:8px; background:var(--da-surface); border:1px solid var(--da-border); padding:10px 18px; border-radius:4px; font-size:0.8rem; color:var(--da-text); text-decoration:none; transition:border-color 0.2s;"
+                   onmouseover="this.style.borderColor='var(--da-orange)'" onmouseout="this.style.borderColor='var(--da-border)'">
+                    📄 {{ pdf.label or 'Download PDF' }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
     </div>
 </div>
 
 <!-- ══ RELATED PROJECTS ══ -->
+{% if related %}
 <div class="section bg-light">
     <div class="container">
         <div class="row mb-5">
@@ -91,50 +163,30 @@
             </div>
         </div>
         <div class="row g-1">
+            {% for rp in related[:3] %}
             <div class="col-sm-6 col-md-4">
                 <div class="single-portfolio">
-                    <a href="{{ url_for('project_single') }}">
-                        <img src="{{ url_for('static', filename='images/img_8.jpg') }}" alt="DPS School Lucknow">
+                    <a href="{{ url_for('project_detail', slug=rp.slug) }}">
+                        <img src="{{ url_for('static', filename=rp.cover_image_url) }}" alt="{{ rp.title }}">
                         <div class="contents">
-                            <div class="cat">Landscape Design</div>
-                            <h3>DPS School</h3>
-                            <div class="proj-location">Lucknow, UP</div>
+                            <div class="cat">{{ rp.category_display or rp.category }}</div>
+                            <h3>{{ rp.title }}</h3>
+                            <div class="proj-location">{{ rp.location }}</div>
                         </div>
                     </a>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="single-portfolio">
-                    <a href="{{ url_for('project_single') }}">
-                        <img src="{{ url_for('static', filename='images/img_2.jpg') }}" alt="Nirala Aspire Prayagraj">
-                        <div class="contents">
-                            <div class="cat">Landscape Design</div>
-                            <h3>Nirala Aspire</h3>
-                            <div class="proj-location">Prayagraj, UP</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="single-portfolio">
-                    <a href="{{ url_for('project_single') }}">
-                        <img src="{{ url_for('static', filename='images/img_4.jpg') }}" alt="SDRF Bihar">
-                        <div class="contents">
-                            <div class="cat">Institutional Architecture</div>
-                            <h3>SDRF Bihar</h3>
-                            <div class="proj-location">Ayodhya, UP</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            {% endfor %}
         </div>
         <div class="text-center mt-5" data-aos="fade-up">
             <a href="{{ url_for('projects') }}" class="btn btn-outline-dark">View All Projects</a>
         </div>
     </div>
 </div>
+{% endif %}
 
 <!-- ══ TESTIMONIALS ══ -->
+{% if testimonials %}
 <div class="section">
     <div class="container mb-5">
         <div class="row">
@@ -150,45 +202,24 @@
             <span data-controls="next"><span class="icon-chevron-right"></span></span>
         </div>
         <div class="testimonial-slide-center testimonial-center" id="testimonial-center">
+            {% for t in testimonials %}
             <div class="item">
                 <div class="testimonial-item">
                     <div class="testimonial-item-inner">
                         <div class="testimonial-author mb-4">
-                            <div class="avatar-ring"><span class="avatar-initials">SM</span></div>
-                            <strong class="d-block mt-2">Sunil Munirika</strong>
-                            <span>Resident, Prayagraj</span>
+                            <div class="avatar-ring"><span class="avatar-initials">{{ t.initials or t.client_name[:2].upper() }}</span></div>
+                            <strong class="d-block mt-2">{{ t.client_name }}</strong>
+                            <span>{{ t.company }}</span>
                         </div>
-                        <blockquote>Drav Architecture transformed our vision into reality. The team's attention to detail, especially in the landscape integration and spatial planning, exceeded our expectations. The result is a home we are truly proud of.</blockquote>
+                        <blockquote>{{ t.text }}</blockquote>
                     </div>
                 </div>
             </div>
-            <div class="item">
-                <div class="testimonial-item">
-                    <div class="testimonial-item-inner">
-                        <div class="testimonial-author mb-4">
-                            <div class="avatar-ring"><span class="avatar-initials">AM</span></div>
-                            <strong class="d-block mt-2">Amrapali Project Manager</strong>
-                            <span>Amrapali Group, Lucknow</span>
-                        </div>
-                        <blockquote>The landscape design for our residential township was executed with exceptional professionalism. Drav Architecture delivered a green environment that our residents love. We highly recommend them for large-scale landscape work.</blockquote>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="testimonial-item">
-                    <div class="testimonial-item-inner">
-                        <div class="testimonial-author mb-4">
-                            <div class="avatar-ring"><span class="avatar-initials">SD</span></div>
-                            <strong class="d-block mt-2">SDRF Director</strong>
-                            <span>State Disaster Response Force, Bihar</span>
-                        </div>
-                        <blockquote>The institutional design for our facility was handled with utmost seriousness and technical rigour. The finished complex is functional, durable, and aesthetically considered. We are pleased with the outcome.</blockquote>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
+{% endif %}
 
 <!-- ══ CTA BANNER ══ -->
 <div class="cta-banner">

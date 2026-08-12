@@ -1,0 +1,88 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Testimonials{% endblock %}
+{% block page_title %}Testimonials{% endblock %}
+
+{% block content %}
+
+<!-- Add Testimonial -->
+<div class="admin-card mb-4">
+    <div class="admin-card-title">Add Testimonial</div>
+    <form method="POST" action="{{ url_for('admin_bp.testimonial_new') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div class="grid-2 mb-3">
+            <div>
+                <label class="form-label">Client Name *</label>
+                <input type="text" name="client_name" class="form-control" required placeholder="Full name">
+            </div>
+            <div>
+                <label class="form-label">Company / Role</label>
+                <input type="text" name="company" class="form-control" placeholder="e.g. Amrapali Group, Prayagraj">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Testimonial Text *</label>
+            <textarea name="text" class="form-control" rows="4" required placeholder="What the client said..."></textarea>
+        </div>
+        <button type="submit" class="btn-da">Add Testimonial</button>
+    </form>
+</div>
+
+<!-- Existing Testimonials -->
+<div class="admin-card">
+    <div class="admin-card-title">All Testimonials ({{ testimonials|length }})</div>
+
+    {% for t in testimonials %}
+    <div style="background:var(--da-surface-2); border:1px solid var(--da-border); border-radius:6px; padding:18px; margin-bottom:14px;">
+        <div class="d-flex justify-between align-items-center mb-3">
+            <div class="d-flex align-items-center gap-2">
+                <div style="width:38px; height:38px; border-radius:50%; background:var(--da-orange-dim); border:1px solid rgba(252,84,4,0.25); display:flex; align-items:center; justify-content:center; font-size:0.78rem; font-weight:700; color:var(--da-orange); flex-shrink:0;">
+                    {{ t.initials or '?' }}
+                </div>
+                <div>
+                    <strong style="font-size:0.88rem;">{{ t.client_name }}</strong>
+                    <div style="font-size:0.72rem; color:var(--da-text-muted);">{{ t.company }}</div>
+                </div>
+                {% if t.is_active %}
+                <span class="badge-da badge-active">Active</span>
+                {% else %}
+                <span class="badge-da badge-inactive">Hidden</span>
+                {% endif %}
+            </div>
+        </div>
+        <form method="POST" action="{{ url_for('admin_bp.testimonial_edit', testimonial_id=t.id) }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="grid-2 mb-3">
+                <div>
+                    <label class="form-label">Client Name</label>
+                    <input type="text" name="client_name" class="form-control" value="{{ t.client_name }}" required>
+                </div>
+                <div>
+                    <label class="form-label">Company / Role</label>
+                    <input type="text" name="company" class="form-control" value="{{ t.company or '' }}">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Testimonial Text</label>
+                <textarea name="text" class="form-control" rows="3">{{ t.text }}</textarea>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px;">
+                <div class="form-check">
+                    <input type="checkbox" name="is_active" id="t_{{ t.id }}" class="form-check-input" {% if t.is_active %}checked{% endif %}>
+                    <label for="t_{{ t.id }}" class="form-check-label">Active (visible)</label>
+                </div>
+                <button type="submit" class="btn-sm-da">Save</button>
+                <form method="POST" action="{{ url_for('admin_bp.testimonial_delete', testimonial_id=t.id) }}"
+                      onsubmit="return confirm('Delete this testimonial?')" style="display:inline;">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn-danger-sm">Delete</button>
+                </form>
+            </div>
+        </form>
+    </div>
+    {% else %}
+    <p class="text-muted-da">No testimonials yet. Add one above.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

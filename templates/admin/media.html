@@ -1,0 +1,97 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Media Library{% endblock %}
+{% block page_title %}Media Library{% endblock %}
+
+{% block topbar_actions %}
+    <button class="btn-da" onclick="document.getElementById('upload-form').scrollIntoView({behavior:'smooth'})">+ Upload Files</button>
+{% endblock %}
+
+{% block content %}
+
+<!-- Upload Form -->
+<div class="admin-card mb-5" id="upload-form">
+    <div class="admin-card-title">Upload Files</div>
+    <form method="POST" action="{{ url_for('admin_bp.media_upload') }}" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div class="upload-zone" onclick="document.getElementById('file-input').click()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:36px;height:36px;color:var(--da-text-muted);margin-bottom:10px;">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            <p>Click to select files or drag and drop</p>
+            <p style="font-size:0.72rem; margin-top:4px; color:rgba(245,244,240,0.2);">Images (JPG, PNG, WebP, GIF) or PDFs — max 30MB each</p>
+            <input type="file" id="file-input" name="files" multiple accept="image/*,.pdf" style="display:none;"
+                   onchange="this.closest('form').querySelector('.file-count').textContent = this.files.length + ' file(s) selected'; this.closest('form').querySelector('button').click()">
+        </div>
+        <div style="margin-top:10px; display:flex; align-items:center; gap:12px;">
+            <span class="file-count text-muted-da" style="font-size:0.78rem;"></span>
+            <button type="submit" class="btn-da" style="display:none;">Upload</button>
+        </div>
+    </form>
+</div>
+
+<!-- Images -->
+{% if images %}
+<div class="admin-card mb-5">
+    <div class="admin-card-title">Images ({{ images|length }})</div>
+    <div class="img-grid">
+        {% for img in images %}
+        <div class="img-grid-item">
+            <img src="{{ url_for('static', filename=img.file_path) }}" alt="{{ img.original_name }}">
+            <div class="img-name" title="{{ img.original_name }}">{{ img.original_name or img.filename }}</div>
+            <div class="img-actions">
+                <form method="POST" action="{{ url_for('admin_bp.media_delete', media_id=img.id) }}"
+                      onsubmit="return confirm('Delete this image permanently?')">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn-danger-sm">✕</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<!-- PDFs -->
+{% if pdfs %}
+<div class="admin-card">
+    <div class="admin-card-title">PDFs ({{ pdfs|length }})</div>
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Filename</th>
+                <th>Original Name</th>
+                <th>Uploaded</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pdf in pdfs %}
+            <tr>
+                <td>📄 {{ pdf.filename }}</td>
+                <td>{{ pdf.original_name }}</td>
+                <td style="color:var(--da-text-muted); font-size:0.75rem;">{{ pdf.uploaded_at.strftime('%d %b %Y') }}</td>
+                <td>
+                    <div class="d-flex gap-2">
+                        <a href="{{ url_for('static', filename=pdf.file_path) }}" target="_blank" class="btn-sm-da">View</a>
+                        <form method="POST" action="{{ url_for('admin_bp.media_delete', media_id=pdf.id) }}"
+                              onsubmit="return confirm('Delete this PDF permanently?')">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn-danger-sm">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+
+{% if not images and not pdfs %}
+<div class="admin-card" style="text-align:center; padding:48px;">
+    <p class="text-muted-da">No files uploaded yet. Use the form above to upload images and PDFs.</p>
+</div>
+{% endif %}
+
+{% endblock %}

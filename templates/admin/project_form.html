@@ -1,0 +1,203 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}{{ 'Edit' if project else 'New' }} Project{% endblock %}
+{% block page_title %}{{ 'Edit Project' if project else 'New Project' }}{% endblock %}
+
+{% block topbar_actions %}
+    <a href="{{ url_for('admin_bp.projects') }}" class="btn-da-outline">← Back to Projects</a>
+{% endblock %}
+
+{% block content %}
+
+{% set action = url_for('admin_bp.project_edit', project_id=project.id) if project else url_for('admin_bp.project_new') %}
+
+<form method="POST" action="{{ action }}" enctype="multipart/form-data">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <div class="grid-2 mb-4">
+
+        <!-- Left column: main info -->
+        <div>
+            <div class="admin-card">
+                <div class="admin-card-title">Project Details</div>
+
+                <div class="mb-3">
+                    <label class="form-label">Project Title *</label>
+                    <input type="text" name="title" class="form-control" value="{{ project.title if project else '' }}" required placeholder="e.g. Urban Woods">
+                </div>
+
+                <div class="grid-2 mb-3">
+                    <div>
+                        <label class="form-label">Category (filter key)</label>
+                        <select name="category" class="form-control">
+                            <option value="landscape" {% if project and project.category == 'landscape' %}selected{% endif %}>landscape</option>
+                            <option value="architecture" {% if project and project.category == 'architecture' %}selected{% endif %}>architecture</option>
+                            <option value="institutional" {% if project and project.category == 'institutional' %}selected{% endif %}>institutional</option>
+                            <option value="other" {% if project and project.category == 'other' %}selected{% endif %}>other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label">Category Display Name</label>
+                        <input type="text" name="category_display" class="form-control" value="{{ project.category_display if project else '' }}" placeholder="e.g. Landscape Design">
+                    </div>
+                </div>
+
+                <div class="grid-2 mb-3">
+                    <div>
+                        <label class="form-label">Location</label>
+                        <input type="text" name="location" class="form-control" value="{{ project.location if project else '' }}" placeholder="e.g. Lucknow, UP">
+                    </div>
+                    <div>
+                        <label class="form-label">Client</label>
+                        <input type="text" name="client" class="form-control" value="{{ project.client if project else '' }}" placeholder="Client name">
+                    </div>
+                </div>
+
+                <div class="grid-2 mb-3">
+                    <div>
+                        <label class="form-label">Area (sq ft / acres)</label>
+                        <input type="text" name="area_sqft" class="form-control" value="{{ project.area_sqft if project else '' }}" placeholder="e.g. 5000 sq ft">
+                    </div>
+                    <div>
+                        <label class="form-label">Year</label>
+                        <input type="number" name="year" class="form-control" value="{{ project.year if project else '' }}" placeholder="2023" min="1990" max="2030">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Services Provided</label>
+                    <input type="text" name="services_provided" class="form-control" value="{{ project.services_provided if project else '' }}" placeholder="e.g. Architecture + Landscape">
+                </div>
+
+                <div class="grid-2 mb-3">
+                    <div>
+                        <label class="form-label">Status</label>
+                        <select name="status" class="form-control">
+                            <option value="Completed" {% if not project or project.status == 'Completed' %}selected{% endif %}>Completed</option>
+                            <option value="Ongoing" {% if project and project.status == 'Ongoing' %}selected{% endif %}>Ongoing</option>
+                            <option value="Design Phase" {% if project and project.status == 'Design Phase' %}selected{% endif %}>Design Phase</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label">Display Order</label>
+                        <input type="number" name="display_order" class="form-control" value="{{ project.display_order if project else 0 }}" min="0">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input type="checkbox" name="is_featured" id="is_featured" class="form-check-input"
+                               {% if not project or project.is_featured %}checked{% endif %}>
+                        <label for="is_featured" class="form-check-label">Show on homepage (featured)</label>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Project Description</label>
+                    <textarea name="description" class="form-control" rows="6" placeholder="Describe the project...">{{ project.description if project else '' }}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right column: images -->
+        <div>
+            <div class="admin-card mb-4">
+                <div class="admin-card-title">Cover Image</div>
+
+                {% if project and project.cover_image %}
+                <div class="mb-3">
+                    <p style="font-size:0.75rem; color:var(--da-text-muted);">Current cover:</p>
+                    <img src="{{ url_for('static', filename=project.cover_image_url) }}" style="width:100%; max-height:180px; object-fit:cover; border-radius:4px; border:1px solid var(--da-border);" alt="">
+                    <p style="font-size:0.65rem; color:var(--da-text-muted); margin-top:4px;">{{ project.cover_image }}</p>
+                </div>
+                {% endif %}
+
+                <div class="mb-3">
+                    <label class="form-label">Upload New Cover Image</label>
+                    <input type="file" name="cover_image" class="form-control" accept="image/*">
+                    <p style="font-size:0.68rem; color:var(--da-text-muted); margin-top:4px;">Max 20MB. Will be auto-compressed.</p>
+                </div>
+
+                {% if media_images %}
+                <div class="mb-3">
+                    <label class="form-label">Or Select from Media Library</label>
+                    <select name="cover_image_select" class="form-control">
+                        <option value="">— Upload new above —</option>
+                        {% for img in media_images %}
+                        <option value="{{ img.file_path }}" {% if project and project.cover_image == img.file_path %}selected{% endif %}>
+                            {{ img.original_name or img.filename }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="admin-card mb-4">
+                <div class="admin-card-title">Gallery Images</div>
+
+                {% if project and project.images %}
+                <div class="mb-3">
+                    <p style="font-size:0.75rem; color:var(--da-text-muted);">Existing gallery images:</p>
+                    <div class="img-grid">
+                        {% for img in project.images %}
+                        <div class="img-grid-item">
+                            <img src="{{ url_for('static', filename=img.filename) }}" alt="">
+                            <div class="img-name">{{ img.caption or img.filename.split('/')[-1] }}</div>
+                            <div class="img-actions">
+                                <form method="POST" action="{{ url_for('admin_bp.project_image_delete', project_id=project.id, image_id=img.id) }}"
+                                      onsubmit="return confirm('Remove this image?')">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="btn-danger-sm">✕</button>
+                                </form>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <div>
+                    <label class="form-label">Add Gallery Images</label>
+                    <input type="file" name="gallery_images" class="form-control" accept="image/*" multiple>
+                    <p style="font-size:0.68rem; color:var(--da-text-muted); margin-top:4px;">Select multiple images. Each will be auto-compressed.</p>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="admin-card-title">Project PDFs</div>
+
+                {% if project and project.pdfs %}
+                <div class="mb-3">
+                    {% for pdf in project.pdfs %}
+                    <div class="d-flex align-items-center justify-between mb-2" style="background:var(--da-surface-2); border-radius:4px; padding:8px 12px;">
+                        <span style="font-size:0.78rem;">📄 {{ pdf.label or pdf.filename.split('/')[-1] }}</span>
+                        <form method="POST" action="{{ url_for('admin_bp.project_pdf_delete', project_id=project.id, pdf_id=pdf.id) }}"
+                              onsubmit="return confirm('Remove this PDF?')">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn-danger-sm">Remove</button>
+                        </form>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="mb-3">
+                    <label class="form-label">Upload PDF</label>
+                    <input type="file" name="pdf_files" class="form-control" accept=".pdf" multiple>
+                </div>
+                <div>
+                    <label class="form-label">PDF Labels (one per line)</label>
+                    <textarea name="pdf_labels" class="form-control" rows="2" placeholder="Project Portfolio&#10;Floor Plans"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex gap-3">
+        <button type="submit" class="btn-da">{{ 'Update Project' if project else 'Create Project' }}</button>
+        <a href="{{ url_for('admin_bp.projects') }}" class="btn-da-outline">Cancel</a>
+    </div>
+</form>
+
+{% endblock %}

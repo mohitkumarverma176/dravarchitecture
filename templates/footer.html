@@ -9,20 +9,20 @@
                         Drav Architecture<span style="color:#fc5404;">.</span>
                     </a>
                     <p class="mt-4 mb-3" style="font-size:0.84rem; line-height:1.9; max-width:300px;">
-                        A multidisciplinary design studio specialising in Architecture, Landscape Design, and Interior Planning. Creating spaces that endure — across India.
+                        {{ footer_settings.get('footer_tagline', 'A multidisciplinary design studio specialising in Architecture, Landscape Design, and Interior Planning. Creating spaces that endure — across India.') }}
                     </p>
                     <p class="mb-1">
-                        <a href="tel:+918878860664" style="font-size:0.88rem; font-weight:500; color:rgba(245,244,240,0.65) !important;">+91 88788 60664</a>
+                        <a href="tel:{{ footer_settings.get('contact_phone', '+91 88788 60664') }}" style="font-size:0.88rem; font-weight:500; color:rgba(245,244,240,0.65) !important;">{{ footer_settings.get('contact_phone', '+91 88788 60664') }}</a>
                     </p>
                     <p class="mb-0">
-                        <a href="mailto:dravarchitecture@outlook.com" style="font-size:0.82rem; color:rgba(245,244,240,0.35) !important;">dravarchitecture@outlook.com</a>
+                        <a href="mailto:{{ footer_settings.get('contact_email', 'dravarchitecture@outlook.com') }}" style="font-size:0.82rem; color:rgba(245,244,240,0.35) !important;">{{ footer_settings.get('contact_email', 'dravarchitecture@outlook.com') }}</a>
                     </p>
                 </div>
                 <div class="widget">
                     <ul class="social list-unstyled d-flex gap-3 mb-0">
-                        <li><a href="#" aria-label="Facebook"><span class="icon-facebook"></span></a></li>
-                        <li><a href="#" aria-label="Instagram"><span class="icon-instagram"></span></a></li>
-                        <li><a href="#" aria-label="LinkedIn"><span class="icon-linkedin"></span></a></li>
+                        <li><a href="{{ footer_settings.get('social_facebook', '#') }}" aria-label="Facebook"><span class="icon-facebook"></span></a></li>
+                        <li><a href="{{ footer_settings.get('social_instagram', '#') }}" aria-label="Instagram"><span class="icon-instagram"></span></a></li>
+                        <li><a href="{{ footer_settings.get('social_linkedin', '#') }}" aria-label="LinkedIn"><span class="icon-linkedin"></span></a></li>
                     </ul>
                 </div>
             </div>
