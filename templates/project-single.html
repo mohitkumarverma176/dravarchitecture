@@ -1,7 +1,22 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ project.title }} — Drav Architecture{% endblock %}
+{% block title %}{{ project.title }}{% endblock %}
 {% block meta_description %}{{ project.description[:155] if project.description else project.title + ' — a project by Drav Architecture.' }}{% endblock %}
+{% block meta_keywords %}{{ project.title }}, {{ project.category_display or project.category }}, {{ project.location }}, Drav Architecture, architecture India{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block og_image %}{{ request.host_url }}static/{{ project.cover_image_url }}{% endblock %}
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "{{ project.title }}",
+  "description": "{{ (project.description or '')|replace('"', '\\"')|truncate(200, True, '') }}",
+  "creator": { "@type": "Organization", "name": "Drav Architecture" },
+  "locationCreated": { "@type": "Place", "name": "{{ project.location or 'India' }}" }
+}
+</script>
+{% endblock %}
 {% block nav_projects %}active{% endblock %}
 
 {% block content %}

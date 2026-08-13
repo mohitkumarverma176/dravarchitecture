@@ -4,13 +4,60 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Drav Architecture">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="robots" content="index, follow">
 
     <!-- SVG Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%23fc5404'%3EDA%3C/text%3E%3C/svg%3E">
     <link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%23fc5404'%3EDA%3C/text%3E%3C/svg%3E">
 
     <meta name="description" content="{% block meta_description %}Drav Architecture — Expert Architecture, Landscape Design & Interior Planning across India.{% endblock %}">
-    <meta name="keywords" content="{% block meta_keywords %}architecture, landscape design, interior design, engineering plan, India{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}architecture firm India, landscape design India, interior design India, Drav Architecture, architect Uttar Pradesh{% endblock %}">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ request.base_url }}">
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="Drav Architecture">
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:url" content="{{ request.base_url }}">
+    <meta property="og:title" content="{{ self.title() }} | Drav Architecture">
+    <meta property="og:description" content="{{ self.meta_description() | striptags }}">
+    <meta property="og:image" content="{% block og_image %}{{ request.host_url }}static/images/img_2.jpg{% endblock %}">
+    <meta property="og:locale" content="en_IN">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ self.title() }} | Drav Architecture">
+    <meta name="twitter:description" content="{{ self.meta_description() | striptags }}">
+    <meta name="twitter:image" content="{{ self.og_image() }}">
+
+    <!-- Structured Data: Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Drav Architecture",
+      "description": "Multidisciplinary design studio specialising in Architecture, Landscape Design, and Interior Planning across India.",
+      "url": "{{ request.host_url }}",
+      "telephone": "+91-88788-60664",
+      "email": "dravarchitecture@outlook.com",
+      "areaServed": { "@type": "Country", "name": "India" },
+      "address": { "@type": "PostalAddress", "addressCountry": "IN" },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Design Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Architecture Design" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Landscape Design" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Interior Design" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "3D Visualization" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Engineering Plans" } }
+        ]
+      }
+    }
+    </script>
+    {% block structured_data %}{% endblock %}
 
     <!-- Fonts: Cormorant Garamond (display) + Inter (UI) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

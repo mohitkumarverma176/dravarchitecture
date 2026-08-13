@@ -1676,6 +1676,41 @@ label {
   .hero-2 { min-height: 56vh; }
   .hero-inner { min-height: 44vh !important; }
   .cta-banner { padding: 64px 0; }
+
+  /* Service rows — force column stacking so flex-row-reverse doesn't reverse vertical order */
+  .service-row .row { flex-direction: column !important; }
+  .service-row .col-lg-5,
+  .service-row .col-lg-6 { max-width: 100%; width: 100%; }
+  .service-row { padding: 56px 0; }
+
+  /* Process steps — hide decorative horizontal line on tablet/mobile */
+  .process-steps-row::before,
+  .process-line-draw { display: none !important; }
+}
+
+@media (max-width: 767.98px) {
+  .stat-item:not(:last-child)::after { display: none; }
+  .stat-number { font-size: 3rem; }
+
+  /* Section & display headings — fluid scaling */
+  .section-heading { font-size: clamp(1.9rem, 7vw, 2.8rem); }
+  .display-heading { font-size: clamp(2.6rem, 10vw, 4rem); line-height: 1.1; }
+
+  /* Why cards — let Bootstrap stack them but give breathing room */
+  .why-card { margin-bottom: 12px; }
+
+  /* Nav phone link — hide at mobile breakpoint */
+  .site-nav .site-menu.float-end { display: none !important; }
+
+  /* Touch targets — min 44px per WCAG */
+  .btn, a.more, a.more-2 { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+
+  /* Project filter buttons */
+  .project-filter { flex-wrap: wrap; gap: 8px; }
+  .project-filter button { min-height: 40px; font-size: 0.7rem; }
+
+  /* Testimonials */
+  .testimonial-item-inner { padding: 32px 24px; }
 }
 
 @media (max-width: 575.98px) {
@@ -1688,4 +1723,21 @@ label {
   .hero-wrap { height: 100svh; }
   .hero-bg-slide { height: 100svh; }
   .scroll-indicator { display: none; }
+
+  /* Service rows on small phone */
+  .service-row { padding: 40px 0; }
+  .service-row img { margin-bottom: 24px; }
+  .svc-number { font-size: 3.5rem; }
+
+  /* Process steps — stack vertically */
+  .process-step { border-top: 2px solid var(--da-border); border-left: none; margin-bottom: 8px; }
+
+  /* Testimonials */
+  .testimonial-item-inner { padding: 24px 16px; }
+
+  /* Footer columns — tighten */
+  .site-footer .widget { margin-bottom: 32px; }
+
+  /* Stat items — allow wrapping */
+  .stat-item { flex: 1 1 45%; min-width: 140px; }
 }

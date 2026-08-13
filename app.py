@@ -1,10 +1,11 @@
 import os
 import smtplib
 import ssl
+import datetime
 from email.message import EmailMessage
 
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, redirect, url_for, flash, abort
+from flask import Flask, render_template, request, redirect, url_for, flash, abort, make_response
 from flask_wtf.csrf import CSRFProtect
 
 load_dotenv()
@@ -171,6 +172,52 @@ def send_email(recipient: str, subject: str, body: str):
 @app.get('/health')
 def health():
     return {'status': 'ok'}
+
+
+@app.route('/robots.txt')
+def robots_txt():
+    lines = [
+        'User-agent: *',
+        'Allow: /',
+        'Disallow: /admin/',
+        '',
+        f'Sitemap: {request.host_url}sitemap.xml',
+    ]
+    resp = make_response('\n'.join(lines))
+    resp.headers['Content-Type'] = 'text/plain'
+    return resp
+
+
+@app.route('/sitemap.xml')
+def sitemap_xml():
+    from models import Project
+    pages = [
+        (url_for('home', _external=True), '1.0', 'weekly'),
+        (url_for('projects', _external=True), '0.9', 'weekly'),
+        (url_for('services', _external=True), '0.8', 'monthly'),
+        (url_for('about', _external=True), '0.7', 'monthly'),
+        (url_for('contact', _external=True), '0.7', 'monthly'),
+    ]
+    today = datetime.date.today().isoformat()
+    parts = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ]
+    for loc, priority, freq in pages:
+        parts.append(
+            f'  <url><loc>{loc}</loc><lastmod>{today}</lastmod>'
+            f'<changefreq>{freq}</changefreq><priority>{priority}</priority></url>'
+        )
+    for proj in Project.query.all():
+        loc = url_for('project_detail', slug=proj.slug, _external=True)
+        parts.append(
+            f'  <url><loc>{loc}</loc><lastmod>{today}</lastmod>'
+            f'<changefreq>monthly</changefreq><priority>0.6</priority></url>'
+        )
+    parts.append('</urlset>')
+    resp = make_response('\n'.join(parts))
+    resp.headers['Content-Type'] = 'application/xml'
+    return resp
 
 
 if __name__ == '__main__':
