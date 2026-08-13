@@ -7,6 +7,9 @@ services:
       - "127.0.0.1:5000:5000"   # bind only to localhost — nginx proxies from outside
     env_file:
       - .env
+    volumes:
+      - ./data:/app/data                      # SQLite DB persistence
+      - ./uploads:/app/static/uploads         # Uploaded images & PDFs persistence
     healthcheck:
       test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:5000/health')\""]
       interval: 15s

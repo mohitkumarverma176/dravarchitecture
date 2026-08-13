@@ -11,8 +11,9 @@ RUN pip install --no-cache-dir -r requirements.txt && \
 # Copy application code
 COPY . .
 
-# Non-root user for security
+# Non-root user for security + create persistent-volume mount points
 RUN adduser --disabled-password --gecos '' appuser && \
+    mkdir -p /app/static/uploads/images /app/static/uploads/pdfs /app/data && \
     chown -R appuser:appuser /app
 USER appuser
 
