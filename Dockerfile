@@ -1,12 +1,20 @@
+# ── Stage 1: builder ────────────────────────────────────────────────────────
+# Install all deps into an isolated prefix; builder stage is discarded after.
+FROM python:3.12-slim AS builder
+
+WORKDIR /build
+COPY requirements.txt .
+RUN pip install --no-cache-dir --prefix=/install -r requirements.txt && \
+    pip install --no-cache-dir --prefix=/install gunicorn
+
+# ── Stage 2: runtime ────────────────────────────────────────────────────────
+# Clean slim image — no pip, no build tools, no cache. Smaller & less RAM.
 FROM python:3.12-slim
 
-# Set working directory
 WORKDIR /app
 
-# Install dependencies first (layer cache)
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt && \
-    pip install --no-cache-dir gunicorn
+# Pull only the installed packages from the builder stage
+COPY --from=builder /install /usr/local
 
 # Copy application code
 COPY . .
@@ -19,5 +27,5 @@ USER appuser
 
 EXPOSE 5000
 
-# Use gunicorn for production (4 workers)
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "--timeout", "60", "app:app"]
+# Gunicorn reads gunicorn.conf.py automatically
+CMD ["gunicorn", "app:app"]

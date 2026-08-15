@@ -7,6 +7,8 @@ services:
       - "127.0.0.1:5000:5000"   # bind only to localhost — nginx proxies from outside
     env_file:
       - .env
+    mem_limit: 512m        # hard cap — prevents OOM-killing the host OS on 1 GB RAM
+    memswap_limit: 640m    # allows 128 MB swap burst for startup spikes
     volumes:
       - ./data:/app/data                      # SQLite DB persistence
       - ./uploads:/app/static/uploads         # Uploaded images & PDFs persistence
